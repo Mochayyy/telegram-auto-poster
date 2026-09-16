@@ -427,40 +427,51 @@ async def send_post(schedule):
 
             extension = os.path.splitext(media_file)[1].lower()
 
+            # -------------------------------------------------
+            # TEXT FIRST → MEDIA SECOND → BUTTON ON MEDIA
+            # -------------------------------------------------
+
+            # Kirim TEXT terlebih dahulu
+            if message:
+                # Telegram text message maksimal 4096 karakter
+                text_parts = [
+                    message[i:i + 4096]
+                    for i in range(0, len(message), 4096)
+                ]
+
+                for text_part in text_parts:
+                    await bot.send_message(
+                        chat_id=chat_id,
+                        text=text_part,
+                        reply_markup=None
+                    )
+
+            # Setelah TEXT terkirim, kirim MEDIA
             with open(media_file, "rb") as file:
+
                 if extension in [".jpg", ".jpeg", ".png", ".webp"]:
+
                     await bot.send_photo(
                         chat_id=chat_id,
                         photo=file,
-                        caption=message[:1024] if message else None,
                         reply_markup=keyboard
                     )
 
                 elif extension in [".mp4", ".mov", ".avi", ".mkv"]:
+
                     await bot.send_video(
                         chat_id=chat_id,
                         video=file,
-                        caption=message[:1024] if message else None,
                         reply_markup=keyboard
                     )
 
                 else:
+
                     await bot.send_document(
                         chat_id=chat_id,
                         document=file,
-                        caption=message[:1024] if message else None,
                         reply_markup=keyboard
                     )
-
-            # Telegram media captions have a length limit.
-            # If the original message is longer, send the remainder
-            # as a normal text message so it is not silently lost.
-            if len(message) > 1024:
-                await bot.send_message(
-                    chat_id=chat_id,
-                    text=message[1024:],
-                    reply_markup=None
-                )
 
         # -------------------------------------------------
         # TEXT ONLY
@@ -627,4 +638,3 @@ def run_worker():
 
 if __name__ == "__main__":
     run_worker()
-
