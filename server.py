@@ -1179,11 +1179,11 @@ def test_send_destination(destination_id):
             }), 400
 
         message = (
-            "🤖 TEST TELEGRAM AUTO POSTER\n\n"
-            "✅ Bot berhasil terhubung.\n"
-            "✅ Destination berhasil terhubung.\n\n"
-            f"📡 Destination : {destination['name']}\n"
-            f"🆔 Chat ID : {destination['chat_id']}\n\n"
+            "ðŸ¤– TEST TELEGRAM AUTO POSTER\n\n"
+            "âœ… Bot berhasil terhubung.\n"
+            "âœ… Destination berhasil terhubung.\n\n"
+            f"ðŸ“¡ Destination : {destination['name']}\n"
+            f"ðŸ†” Chat ID : {destination['chat_id']}\n\n"
             "Sistem siap digunakan."
         )
 
@@ -1692,7 +1692,7 @@ if __name__ == "__main__":
 
     print()
     print("======================================")
-    print("🤖 TELEGRAM AUTO POSTER")
+    print("ðŸ¤– TELEGRAM AUTO POSTER")
     print("======================================")
     print("Dashboard : http://127.0.0.1:5000")
     print("Posts     : http://127.0.0.1:5000/posts.html")
@@ -1704,7 +1704,7 @@ if __name__ == "__main__":
     print()
 
     app.run(
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=5000,
         debug=True
     )
