@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Destinations Manager - Telegram Auto Poster</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="destinations.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">✈️</div>
+
+            <div>
+                <strong>TELEGRAM</strong>
+                <span>AUTO POSTER</span>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="bots.html" class="nav-item">
+                <span>🤖</span>
+                Bot Manager
+            </a>
+
+            <a href="destinations.html" class="nav-item active">
+                <span>🎯</span>
+                Destinations
+            </a>
+
+            <a href="post-list.html" class="nav-item">
+                <span>📝</span>
+                Posts
+            </a>
+
+            <a href="scheduler.html" class="nav-item">
+                <span>⏰</span>
+                Scheduler
+            </a>
+
+            <a href="logs.html" class="nav-item">
+                <span>📋</span>
+                Logs
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>Telegram API Ready</small>
+                </div>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <h1>Destinations</h1>
+
+                <p>
+                    Kelola Group dan Channel Telegram
+                </p>
+            </div>
+
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                Online
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="page-content">
+
+            <!-- ADD DESTINATION -->
+            <div class="content-card">
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Tambah Destination</h2>
+
+                        <p>
+                            Tambahkan group atau channel Telegram
+                            untuk menerima post otomatis.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <form id="destinationForm">
+
+                    <div class="form-grid">
+
+                        <!-- BOT -->
+                        <div class="form-group">
+
+                            <label for="destinationBot">
+                                Bot
+                            </label>
+
+                            <select
+                                id="destinationBot"
+                                required
+                            >
+
+                                <option value="">
+                                    Pilih Bot
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- NAME -->
+                        <div class="form-group">
+
+                            <label for="destinationName">
+                                Nama Destination
+                            </label>
+
+                            <input
+                                type="text"
+                                id="destinationName"
+                                placeholder="Contoh: TAYO4D Official"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- CHAT ID -->
+                        <div class="form-group">
+
+                            <label for="destinationChatId">
+                                Chat ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="destinationChatId"
+                                placeholder="-1001234567890"
+                                required
+                            >
+
+                            <small class="input-help">
+                                Gunakan Chat ID Group / Channel Telegram.
+                            </small>
+
+                        </div>
+
+
+                        <!-- TYPE -->
+                        <div class="form-group">
+
+                            <label for="destinationType">
+                                Tipe
+                            </label>
+
+                            <select
+                                id="destinationType"
+                                required
+                            >
+
+                                <option value="">
+                                    Pilih Tipe
+                                </option>
+
+                                <option value="group">
+                                    Group
+                                </option>
+
+                                <option value="channel">
+                                    Channel
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="resetDestinationBtn"
+                            class="btn-secondary"
+                        >
+                            Reset
+                        </button>
+
+                        <button
+                            type="submit"
+                            id="saveDestinationBtn"
+                            class="btn-primary"
+                        >
+                            ➕ Tambah Destination
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- DESTINATION LIST -->
+            <div class="content-card">
+
+                <div class="section-header destination-toolbar">
+
+                    <div>
+
+                        <h2>Daftar Destination</h2>
+
+                        <p>
+                            Group dan channel yang terhubung
+                            dengan bot.
+                        </p>
+
+                    </div>
+
+
+                    <div class="destination-actions">
+
+                        <span
+                            id="destinationCount"
+                            class="destination-count"
+                        >
+                            0 Destination
+                        </span>
+
+                        <button
+                            type="button"
+                            id="refreshDestinationsBtn"
+                            class="btn-secondary"
+                        >
+                            🔄 Refresh
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="destinationsList"
+                    class="destinations-list"
+                >
+
+                    <div class="destination-empty">
+
+                        <div class="empty-icon">
+                            🎯
+                        </div>
+
+                        <strong>
+                            Belum ada destination
+                        </strong>
+
+                        <span>
+                            Tambahkan group atau channel
+                            menggunakan form di atas.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="app.js"></script>
+<script src="destinations.js"></script>
+
+</body>
+</html>

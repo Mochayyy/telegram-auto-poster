@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Telegram Auto Poster</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-icon">✈️</div>
+
+                <div>
+                    <strong>TELEGRAM</strong>
+                    <span>AUTO POSTER</span>
+                </div>
+            </div>
+
+            <nav>
+
+                <button class="nav-item active">
+                    <span>📊</span>
+                    Dashboard
+                </button>
+
+                <a
+                    href="bots.html"
+                    class="nav-item"
+                >
+                    <span>🤖</span>
+                    Bot Manager
+                </a>
+
+                <button class="nav-item">
+                    <span>📡</span>
+                    Destinations
+                </button>
+
+                <button class="nav-item">
+                    <span>📝</span>
+                    Posts
+                </button>
+
+                <a href="scheduler.html" class="nav-item">
+                    <span>⏰</span>
+                    Scheduler
+                </a>
+
+                <a href="logs.html" class="nav-item">
+                    <span>📋</span>
+                    Logs
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <span>⚙️</span>
+                Settings
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Telegram Auto Poster Management</p>
+                </div>
+
+                <div class="status">
+                    <span class="status-dot"></span>
+                    System Online
+                </div>
+
+            </header>
+
+
+            <!-- STATISTICS -->
+
+            <section class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">🤖</div>
+
+                    <div>
+                        <span>Active Bots</span>
+                        <strong id="totalBots">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">📡</div>
+
+                    <div>
+                        <span>Destinations</span>
+                        <strong id="totalDestinations">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">📅</div>
+
+                    <div>
+                        <span>Scheduled Posts</span>
+                        <strong id="activeSchedules">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">✅</div>
+
+                    <div>
+                        <span>Sent Today</span>
+                        <strong id="successfulLogs">0</strong>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CONTENT -->
+
+            <section class="content-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>Quick Actions</h2>
+                            <p>Akses fitur utama dengan cepat</p>
+                        </div>
+
+                    </div>
+
+
+                    <button class="action-card" onclick="window.location.href='bots.html'">
+
+                        <span>🤖</span>
+
+                        <div>
+                            <strong>Tambah Bot</strong>
+                            <small>Hubungkan bot Telegram</small>
+                        </div>
+
+                    </button>
+
+
+                    <button class="action-card" onclick="window.location.href='destinations.html'">
+
+                        <span>📡</span>
+
+                        <div>
+                            <strong>Tambah Destination</strong>
+                            <small>Group atau Channel</small>
+                        </div>
+
+                    </button>
+
+
+                    <button class="action-card" onclick="window.location.href='posts.html'">
+
+                        <span>📝</span>
+
+                        <div>
+                            <strong>Buat Post</strong>
+                            <small>Buat konten baru</small>
+                        </div>
+
+                    </button>
+
+
+                    <button class="action-card" onclick="window.location.href='scheduler.html'">
+
+                        <span>📅</span>
+
+                        <div>
+                            <strong>Buat Schedule</strong>
+                            <small>Atur waktu posting</small>
+                        </div>
+
+                    </button>
+
+                    </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h2>System Status</h2>
+                            <p>Status aplikasi</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-status">
+
+                        <div>
+                            <span>Database</span>
+                            <strong class="online">● Connected</strong>
+                        </div>
+
+                        <div>
+                            <span>Telegram API</span>
+                            <strong class="online">● Ready</strong>
+                        </div>
+
+                        <div>
+                            <span>Scheduler</span>
+                            <strong class="waiting">● Waiting</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SCHEDULE -->
+
+            <section class="panel schedule-panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <h2>Upcoming Schedule</h2>
+                        <p>Posting yang akan datang</p>
+                    </div>
+
+                    <button
+                        class="view-all"
+                        onclick="window.location.href='scheduler.html'"
+                    >
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div id="upcomingScheduleList" class="upcoming-schedule-list">
+
+                    <div class="empty">
+
+                        <div class="empty-icon">📅</div>
+
+                        <h3>Belum ada schedule</h3>
+
+                        <p>
+                            Schedule posting yang dibuat akan muncul di sini.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="app.js"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+</html>

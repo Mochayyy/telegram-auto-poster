@@ -1,0 +1,1625 @@
+/* =========================================
+   POST LAYOUT
+========================================= */
+
+.post-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.15fr)
+        minmax(350px, 0.85fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+
+/* =========================================
+   FORM SECTION
+========================================= */
+
+.form-section {
+
+    display: grid;
+
+    grid-template-columns: 42px 1fr;
+
+    gap: 14px;
+
+    padding: 20px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.06);
+}
+
+
+.form-section:first-of-type {
+    padding-top: 5px;
+}
+
+
+.form-section:last-of-type {
+    border-bottom: 0;
+}
+
+
+.section-number {
+
+    width: 34px;
+
+    height: 34px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,23,68,0.08);
+
+    border:
+        1px solid rgba(255,23,68,0.2);
+
+    color: #ff4968;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+.section-content {
+    min-width: 0;
+}
+
+
+.section-content > label,
+.section-heading label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #f0f0f2;
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 10px;
+}
+
+
+.section-heading small {
+
+    display: block;
+
+    color: #74747c;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   INPUT
+========================================= */
+
+.section-content input[type="text"],
+.section-content textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #09090b;
+
+    color: #fff;
+
+    border-radius: 10px;
+
+    padding: 12px 13px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    transition: 0.2s;
+}
+
+
+.section-content input[type="text"]:focus,
+.section-content textarea:focus {
+
+    border-color:
+        rgba(255,23,68,0.55);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,23,68,0.06);
+}
+
+
+.section-content textarea {
+
+    resize: vertical;
+
+    line-height: 1.6;
+
+    min-height: 190px;
+}
+
+
+.input-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 5px;
+
+    color: #6e6e76;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   UPLOAD
+========================================= */
+
+.upload-box {
+
+    position: relative;
+
+    min-height: 135px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border:
+        1px dashed rgba(255,23,68,0.3);
+
+    background:
+        rgba(255,23,68,0.025);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.upload-box:hover {
+
+    border-color:
+        rgba(255,23,68,0.7);
+
+    background:
+        rgba(255,23,68,0.055);
+}
+
+
+.upload-box input {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    opacity: 0;
+
+    cursor: pointer;
+}
+
+
+.upload-content {
+
+    text-align: center;
+
+    pointer-events: none;
+}
+
+
+.upload-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+}
+
+
+.upload-content strong {
+
+    display: block;
+
+    color: #ddd;
+
+    font-size: 13px;
+}
+
+
+.upload-content span {
+
+    display: block;
+
+    color: #707078;
+
+    margin-top: 5px;
+
+    font-size: 10px;
+}
+
+
+/* =========================================
+   SELECTED FILE
+========================================= */
+
+.selected-file {
+
+    margin-top: 9px;
+
+    padding: 9px 11px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-radius: 8px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid rgba(255,255,255,0.07);
+
+    color: #cfcfd4;
+
+    font-size: 11px;
+}
+
+
+.selected-file button {
+
+    border: 0;
+
+    background: transparent;
+
+    color: #ff5572;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+
+.file-icon {
+    margin-right: 5px;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================
+   ADD BUTTON
+========================================= */
+
+.btn-add {
+
+    border:
+        1px solid rgba(255,23,68,0.3);
+
+    background:
+        rgba(255,23,68,0.07);
+
+    color: #ff5874;
+
+    border-radius: 7px;
+
+    padding: 7px 10px;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition: 0.2s;
+}
+
+
+.btn-add:hover {
+
+    color: white;
+
+    border-color:
+        rgba(255,23,68,0.6);
+
+    background:
+        rgba(255,23,68,0.14);
+}
+
+
+/* =========================================
+   BUTTON ROW
+========================================= */
+
+.button-row {
+
+    padding: 13px;
+
+    margin-bottom: 9px;
+
+    border:
+        1px solid rgba(255,255,255,0.07);
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border-radius: 10px;
+}
+
+
+.button-row-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        0.75fr 1.25fr 35px;
+
+    gap: 9px;
+
+    align-items: end;
+}
+
+
+.button-field label {
+
+    display: block;
+
+    color: #73737b;
+
+    font-size: 10px;
+
+    margin-bottom: 5px;
+}
+
+
+.button-field input {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #09090b;
+
+    color: white;
+
+    border-radius: 8px;
+
+    padding: 9px;
+
+    outline: none;
+
+    font-size: 11px;
+}
+
+
+.button-field input:focus {
+
+    border-color:
+        rgba(255,23,68,0.5);
+}
+
+
+.remove-button {
+
+    width: 35px;
+
+    height: 35px;
+
+    border: 0;
+
+    border-radius: 7px;
+
+    background:
+        rgba(255,23,68,0.08);
+
+    color: #ff5b77;
+
+    cursor: pointer;
+}
+
+
+.remove-button:hover {
+
+    background:
+        rgba(255,23,68,0.18);
+
+    color: white;
+}
+
+
+.empty-buttons {
+
+    padding: 18px;
+
+    text-align: center;
+
+    border:
+        1px dashed rgba(255,255,255,0.07);
+
+    border-radius: 9px;
+
+    color: #686870;
+
+    font-size: 11px;
+}
+
+/* =========================================
+   FOOTER BUTTON ROW
+========================================= */
+
+.footer-button-row {
+    margin-top: 10px;
+}
+
+.footer-button-row .button-row-grid {
+    grid-template-columns:
+        0.75fr 1.25fr 35px;
+}
+
+.footer-button-row .footer-button-text,
+.footer-button-row .footer-button-url {
+    width: 100%;
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #09090b;
+
+    color: white;
+
+    border-radius: 8px;
+
+    padding: 9px;
+
+    outline: none;
+
+    font-size: 11px;
+
+    transition: 0.2s;
+}
+
+.footer-button-row .footer-button-text:focus,
+.footer-button-row .footer-button-url:focus {
+    border-color:
+        rgba(255,23,68,0.5);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,23,68,0.05);
+}
+
+
+/* =========================================
+   FOOTER BUTTON PREVIEW
+========================================= */
+
+.preview-footer-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin-top: 10px;
+}
+
+.preview-footer-buttons
+.telegram-button-preview {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 9px;
+
+    border:
+        1px solid rgba(255,23,68,0.22);
+
+    border-radius: 7px;
+
+    background:
+        rgba(255,23,68,0.08);
+
+    color: #ff5874;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.preview-footer-buttons
+.telegram-button-preview:hover {
+
+    background:
+        rgba(255,23,68,0.16);
+
+    border-color:
+        rgba(255,23,68,0.5);
+
+    color: white;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer-section {
+
+    margin-top: 5px;
+}
+
+
+.footer-textarea {
+
+    min-height: 170px !important;
+
+    font-size: 11px !important;
+
+    line-height: 1.6 !important;
+}
+
+
+.footer-tools {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-top: 7px;
+
+    color: #686870;
+
+    font-size: 10px;
+}
+
+
+.btn-reset-footer {
+
+    border: 0;
+
+    background: transparent;
+
+    color: #85858c;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.btn-reset-footer:hover {
+
+    color: #ff5573;
+}
+
+
+/* =========================================
+   SWITCH
+========================================= */
+
+.switch-label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    cursor: pointer;
+
+    color: #aaaab0;
+
+    font-size: 10px;
+}
+
+
+.switch-label input {
+
+    display: none;
+}
+
+
+.switch {
+
+    width: 34px;
+
+    height: 19px;
+
+    position: relative;
+
+    border-radius: 20px;
+
+    background: #303035;
+
+    transition: 0.2s;
+}
+
+
+.switch::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 15px;
+
+    height: 15px;
+
+    top: 2px;
+
+    left: 2px;
+
+    border-radius: 50%;
+
+    background: #aaa;
+
+    transition: 0.2s;
+}
+
+
+.switch-label input:checked + .switch {
+
+    background: #c4002b;
+
+    box-shadow:
+        0 0 12px rgba(255,23,68,0.25);
+}
+
+
+.switch-label input:checked + .switch::after {
+
+    transform: translateX(15px);
+
+    background: white;
+}
+
+
+/* =========================================
+   FORM ACTION
+========================================= */
+
+.form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
+}
+
+
+.btn-primary,
+.btn-secondary {
+
+    padding: 11px 17px;
+
+    border-radius: 9px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.btn-primary {
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #b00020
+        );
+
+    color: white;
+
+    box-shadow:
+        0 0 18px
+        rgba(255,23,68,0.2);
+}
+
+
+.btn-primary:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 0 25px
+        rgba(255,23,68,0.35);
+}
+
+
+.btn-secondary {
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: #aaaab0;
+}
+
+
+/* =========================================
+   TELEGRAM PREVIEW
+========================================= */
+
+.preview-panel {
+
+    position: sticky;
+
+    top: 20px;
+}
+
+
+.telegram-preview {
+
+    background: #0b0d10;
+
+    border:
+        1px solid rgba(255,255,255,0.07);
+
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+
+.preview-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.05);
+}
+
+
+.telegram-avatar {
+
+    width: 37px;
+
+    height: 37px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,23,68,0.14);
+}
+
+
+.preview-header strong {
+
+    display: block;
+
+    font-size: 12px;
+}
+
+
+.preview-header span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    color: #707078;
+
+    font-size: 9px;
+}
+
+
+.preview-message {
+
+    margin: 13px;
+
+    padding: 13px;
+
+    border-radius:
+        10px 10px 10px 3px;
+
+    background: #17191d;
+}
+
+
+/* =========================================
+   PREVIEW TITLE
+========================================= */
+
+.preview-title {
+
+    margin-bottom: 10px;
+
+    color: #fff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   PREVIEW TEXT
+========================================= */
+
+.preview-content {
+
+    color: #d4d4d8;
+
+    font-size: 12px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   PREVIEW MEDIA
+========================================= */
+
+.preview-media {
+
+    margin-bottom: 12px;
+
+    overflow: hidden;
+
+    border-radius: 9px;
+}
+
+
+.preview-media img,
+.preview-media video {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 310px;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   PREVIEW BUTTON
+========================================= */
+
+.preview-buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin-top: 14px;
+}
+
+
+.telegram-button-preview {
+
+    display: block;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 9px;
+
+    border:
+        1px solid rgba(55,150,255,0.16);
+
+    border-radius: 7px;
+
+    background:
+        rgba(55,150,255,0.1);
+
+    color: #55aaff;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   PREVIEW FOOTER
+========================================= */
+
+.preview-footer {
+
+    margin-top: 15px;
+}
+
+
+.footer-divider {
+
+    height: 1px;
+
+    margin-bottom: 11px;
+
+    background:
+        rgba(255,255,255,0.07);
+}
+
+
+.preview-footer-content {
+
+    color: #9da0a8;
+
+    font-size: 10px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* =========================================
+   TIME
+========================================= */
+
+.preview-time {
+
+    margin-top: 8px;
+
+    text-align: right;
+
+    color: #686870;
+
+    font-size: 8px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+
+    .post-layout {
+
+        grid-template-columns: 1fr;
+    }
+
+    .preview-panel {
+
+        position: static;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .form-section {
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
+    .section-number {
+
+        width: 30px;
+
+        height: 30px;
+    }
+
+
+    .section-heading {
+
+        flex-direction: column;
+    }
+
+
+    .btn-add {
+
+        width: 100%;
+    }
+
+
+    .button-row-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .remove-button {
+
+        width: 100%;
+    }
+
+
+    .form-actions {
+
+        flex-direction: column;
+    }
+
+
+    .btn-primary,
+    .btn-secondary {
+
+        width: 100%;
+    }
+
+}
+
+/* =========================================
+   BOT & DESTINATION SELECTOR
+========================================= */
+
+.destination-selector-group {
+    margin-top: 24px;
+}
+
+.destination-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+.destination-header label {
+    display: block;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.destination-help {
+    margin: 5px 0 0;
+    color: #8d8d95;
+    font-size: 12px;
+}
+
+.destination-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.destination-action-btn {
+    border: 1px solid rgba(255, 30, 60, 0.25);
+    background: rgba(255, 30, 60, 0.06);
+    color: #ff4d6d;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.destination-action-btn:hover {
+    background: rgba(255, 30, 60, 0.14);
+    border-color: rgba(255, 30, 60, 0.5);
+}
+
+.destination-count {
+    margin-bottom: 10px;
+    color: #ff4d6d;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.destinations-list {
+    display: grid;
+    gap: 8px;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.destination-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.destination-item:hover {
+    border-color: rgba(255, 30, 60, 0.3);
+    background: rgba(255, 30, 60, 0.05);
+}
+
+.destination-item.selected {
+    border-color: rgba(255, 30, 60, 0.45);
+    background: rgba(255, 30, 60, 0.08);
+}
+
+.destination-checkbox {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    accent-color: #ff1e3c;
+    cursor: pointer;
+}
+
+.destination-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.destination-name {
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.destination-meta {
+    margin-top: 4px;
+    color: #85858e;
+    font-size: 11px;
+}
+
+.destination-loading,
+.destination-empty,
+.destination-error {
+    padding: 20px;
+    text-align: center;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #888;
+    font-size: 13px;
+}
+
+.destination-error {
+    color: #ff667d;
+    border-color: rgba(255, 30, 60, 0.2);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .destination-header {
+        flex-direction: column;
+    }
+
+    .destination-actions {
+        width: 100%;
+    }
+
+    .destination-action-btn {
+        flex: 1;
+    }
+
+}
+
+/* =========================================
+   FIX FULL SCREEN - POST FORM
+========================================= */
+
+.post-form {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.post-form *,
+.post-form *::before,
+.post-form *::after {
+    box-sizing: border-box;
+}
+
+.form-section {
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Bot */
+#postBot {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+/* Destination */
+.destination-selector-group {
+    width: 100%;
+    min-width: 0;
+}
+
+.destination-header {
+    width: 100%;
+    min-width: 0;
+}
+
+.destinations-list {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.destination-item {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.destination-info {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.destination-name,
+.destination-meta {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   FIX BUTTON / CONTENT WIDTH
+========================================= */
+
+.buttons-container,
+.footer-buttons-container,
+#buttonsContainer,
+#footerButtonsContainer {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+/* =========================================
+   FIX INPUT / TEXTAREA
+========================================= */
+
+.post-form input,
+.post-form textarea,
+.post-form select {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.post-form textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+/* =========================================
+   FIX BOT & DESTINATION LAYOUT
+   OVERRIDE EXISTING POST FORM CSS
+========================================= */
+
+/* Container section harus full width */
+.post-form .form-section {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    margin: 0 0 28px 0 !important;
+}
+
+/* Header section: nomor + judul sejajar */
+.post-form .form-section > .section-title {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 16px !important;
+    margin-bottom: 24px !important;
+}
+
+/* Nomor 01 */
+.post-form .form-section > .section-title .section-number {
+    flex: 0 0 34px !important;
+    width: 34px !important;
+    min-width: 34px !important;
+}
+
+/* Judul section */
+.post-form .form-section > .section-title > div {
+    display: block !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+}
+
+.post-form .form-section > .section-title h3 {
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 0 !important;
+    white-space: normal !important;
+}
+
+.post-form .form-section > .section-title p {
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    margin: 5px 0 0 !important;
+}
+
+
+/* =========================================
+   BOT
+========================================= */
+
+.post-form .form-section .form-group {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.post-form #postBot {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+
+/* =========================================
+   DESTINATION HEADER
+========================================= */
+
+.post-form .destination-selector-group {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 24px !important;
+}
+
+.post-form .destination-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 20px !important;
+}
+
+.post-form .destination-header > div:first-child {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+}
+
+.post-form .destination-header label {
+    display: block !important;
+    width: auto !important;
+    white-space: normal !important;
+}
+
+.post-form .destination-help {
+    display: block !important;
+    width: auto !important;
+}
+
+
+/* =========================================
+   BUTTON PILIH / HAPUS
+========================================= */
+
+.post-form .destination-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+}
+
+.post-form .destination-action-btn {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: auto !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.post-form #destinationCount {
+    display: block !important;
+    width: 100% !important;
+    margin: 12px 0 !important;
+}
+
+
+/* =========================================
+   DESTINATION LIST
+========================================= */
+
+.post-form .destinations-list {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 8px !important;
+    overflow-x: hidden !important;
+}
+
+.post-form .destination-item {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 14px 16px !important;
+}
+
+.post-form .destination-checkbox {
+    display: block !important;
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.post-form .destination-info {
+    display: block !important;
+    flex: 1 1 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+}
+
+.post-form .destination-name {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+}
+
+.post-form .destination-meta {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    .post-form .destination-header {
+        display: block !important;
+    }
+
+    .post-form .destination-actions {
+        display: flex !important;
+        width: 100% !important;
+        margin-top: 12px !important;
+    }
+
+    .post-form .destination-action-btn {
+        flex: 1 1 50% !important;
+        justify-content: center !important;
+    }
+}

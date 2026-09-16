@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Post Manager - Telegram Auto Poster</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="post-list.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✈️
+            </div>
+
+            <div>
+                <strong>TELEGRAM</strong>
+                <span>AUTO POSTER</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html" class="nav-item">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <button class="nav-item">
+                <span>🤖</span>
+                Bot Manager
+            </button>
+
+            <button class="nav-item">
+                <span>📡</span>
+                Destinations
+            </button>
+
+            <a href="post-list.html" class="nav-item active">
+                <span>📝</span>
+                Posts
+            </a>
+
+            <button class="nav-item">
+                <span>📅</span>
+                Scheduler
+            </button>
+
+            <button class="nav-item">
+                <span>📋</span>
+                Logs
+            </button>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+            ⚙️ Settings
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Post Manager</h1>
+
+                <p>
+                    Kelola semua konten Telegram Anda
+                </p>
+
+            </div>
+
+            <a
+                href="posts.html"
+                class="btn-primary"
+            >
+                + Buat Post
+            </a>
+
+        </header>
+
+
+        <!-- TOOLBAR -->
+
+        <section class="panel post-toolbar">
+
+            <div class="search-box">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="searchPost"
+                    placeholder="Cari judul atau isi post..."
+                >
+
+            </div>
+
+            <button
+                type="button"
+                id="refreshPostsBtn"
+                class="btn-secondary"
+            >
+                🔄 Refresh
+            </button>
+
+        </section>
+
+
+        <!-- POST LIST -->
+
+        <section
+            id="postList"
+            class="post-list"
+        >
+
+            <div class="loading">
+                Memuat post...
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="post-list.js"></script>
+
+</body>
+
+</html>

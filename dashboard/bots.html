@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Bot Manager - Telegram Auto Poster</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bots.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    ✈️
+                </div>
+
+                <div>
+
+                    <strong>
+                        TELEGRAM
+                    </strong>
+
+                    <span>
+                        AUTO POSTER
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <nav>
+
+                <a
+                    href="index.html"
+                    class="nav-item"
+                >
+                    <span>📊</span>
+                    Dashboard
+                </a>
+
+
+                <a
+                    href="bots.html"
+                    class="nav-item active"
+                >
+                    <span>🤖</span>
+                    Bot Manager
+                </a>
+
+
+                <a
+                    href="destinations.html"
+                    class="nav-item"
+                >
+                    <span>📡</span>
+                    Destinations
+                </a>
+
+
+                <a
+                    href="post-list.html"
+                    class="nav-item"
+                >
+                    <span>📝</span>
+                    Posts
+                </a>
+
+
+                <a
+                    href="scheduler.html"
+                    class="nav-item"
+                >
+                    <span>⏰</span>
+                    Scheduler
+                </a>
+
+
+                <a
+                    href="logs.html"
+                    class="nav-item"
+                >
+                    <span>📋</span>
+                    Logs
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <span>⚙️</span>
+                Settings
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div>
+
+                    <h1>
+                        Bot Manager
+                    </h1>
+
+                    <p>
+                        Kelola bot Telegram yang terhubung
+                    </p>
+
+                </div>
+
+
+                <div class="status">
+
+                    <span class="status-dot"></span>
+
+                    System Online
+
+                </div>
+
+            </header>
+
+
+
+            <!-- BOT TOOLBAR -->
+
+            <section class="bot-toolbar">
+
+                <div>
+
+                    <h2>
+                        Telegram Bots
+                    </h2>
+
+                    <p>
+                        Daftar bot yang tersedia di sistem.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="refreshBotsBtn"
+                    class="btn-secondary"
+                    type="button"
+                >
+                    🔄 Refresh
+                </button>
+
+            </section>
+
+
+
+            <!-- ADD BOT -->
+
+            <section class="panel bot-add-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Tambah Bot
+                        </h2>
+
+                        <p>
+                            Hubungkan bot Telegram baru ke sistem.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="botForm">
+
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="botName">
+                                Nama Bot
+                            </label>
+
+                            <input
+                                type="text"
+                                id="botName"
+                                placeholder="Contoh: TAYO4D Bot"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="botUsername">
+                                Username Bot
+                            </label>
+
+                            <input
+                                type="text"
+                                id="botUsername"
+                                placeholder="@nama_bot"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="botToken">
+                                Bot Token
+                            </label>
+
+                            <input
+                                type="password"
+                                id="botToken"
+                                placeholder="Masukkan token dari BotFather"
+                                autocomplete="off"
+                                required
+                            >
+
+                            <small>
+                                Token hanya digunakan untuk koneksi bot dan tidak ditampilkan di daftar.
+                            </small>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="reset"
+                            id="resetBotBtn"
+                            class="btn-secondary"
+                        >
+                            Reset
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            id="saveBotBtn"
+                            class="btn-primary"
+                        >
+                            ➕ Tambah Bot
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+
+            <!-- BOT LIST -->
+
+            <section class="panel bot-list-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>
+                            Bot Terdaftar
+                        </h2>
+
+                        <p>
+                            Bot yang tersimpan di database.
+                        </p>
+
+                    </div>
+
+
+                    <span
+                        id="botCount"
+                        class="bot-count"
+                    >
+                        0 Bot
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="botsList"
+                    class="bots-list"
+                >
+
+                    <div class="bot-empty">
+
+                        <div class="bot-empty-icon">
+                            🤖
+                        </div>
+
+                        <h3>
+                            Belum ada bot
+                        </h3>
+
+                        <p>
+                            Tambahkan bot Telegram untuk mulai menggunakan Auto Poster.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <script src="app.js"></script>
+
+    <script src="bots.js"></script>
+
+</body>
+
+</html>

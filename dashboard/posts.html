@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Buat Post - Telegram Auto Poster</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="posts.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ==============================
+         SIDEBAR
+    =============================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✈️
+            </div>
+
+            <div>
+                <strong>TELEGRAM</strong>
+                <span>AUTO POSTER</span>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html" class="nav-item">
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <a href="bots.html" class="nav-item">
+                <span>🤖</span>
+                Bot Manager
+            </a>
+
+            <a href="destinations.html" class="nav-item">
+                <span>📡</span>
+                Destinations
+            </a>
+
+            <a href="posts.html" class="nav-item active">
+                <span>📝</span>
+                Posts
+            </a>
+
+            <a href="scheduler.html" class="nav-item">
+                <span>📅</span>
+                Scheduler
+            </a>
+
+            <a href="logs.html" class="nav-item">
+                <span>📋</span>
+                Logs
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+            ⚙️ Settings
+        </div>
+
+    </aside>
+
+
+    <!-- ==============================
+         MAIN
+    =============================== -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Buat Post</h1>
+
+                <p>
+                    Buat konten Telegram dengan mudah
+                </p>
+
+            </div>
+
+        </header>
+
+
+        <div class="post-layout">
+
+
+            <!-- ==============================
+                 FORM
+            =============================== -->
+
+            <section class="panel post-form">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>📝 Konten Post</h2>
+
+                        <p>
+                            Susun konten sesuai urutan pengiriman Telegram
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="postForm">
+
+
+                    <!-- ==========================
+                         1. JUDUL
+                    =========================== -->
+
+                    <div class="form-section">
+
+                        <div class="section-number">
+                            01
+                        </div>
+
+                        <div class="section-content">
+
+                            <label for="postTitle">
+                                Judul
+                            </label>
+
+                            <input
+                                type="text"
+                                id="postTitle"
+                                placeholder="Masukkan judul post..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         2. TEXT
+                    =========================== -->
+
+                    <div class="form-section">
+
+                        <div class="section-number">
+                            02
+                        </div>
+
+                        <div class="section-content">
+
+                            <label for="postContent">
+                                Text / Isi Pesan
+                            </label>
+
+                            <textarea
+                                id="postContent"
+                                rows="9"
+                                placeholder="Tulis isi pesan di sini..."
+                            ></textarea>
+
+                            <div class="input-footer">
+
+                                <span id="charCount">
+                                    0 karakter
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         3. GAMBAR / VIDEO
+                    =========================== -->
+
+                    <div class="form-section">
+
+                        <div class="section-number">
+                            03
+                        </div>
+
+                        <div class="section-content">
+
+                            <label>
+                                Gambar / Video
+                            </label>
+
+
+                            <div
+                                class="upload-box"
+                                id="uploadBox"
+                            >
+
+                                <input
+                                    type="file"
+                                    id="postMedia"
+                                    accept="image/*,video/*"
+                                >
+
+                                <div class="upload-content">
+
+                                    <div class="upload-icon">
+                                        📷
+                                    </div>
+
+                                    <strong>
+                                        Upload Gambar / Video
+                                    </strong>
+
+                                    <span>
+                                        JPG, PNG, WEBP, GIF atau MP4
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                id="selectedFile"
+                                class="selected-file hidden"
+                            >
+
+                                <div>
+
+                                    <span class="file-icon">
+                                        📎
+                                    </span>
+
+                                    <span id="selectedFileName">
+                                        -
+                                    </span>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="removeMediaBtn"
+                                    title="Hapus media"
+                                >
+                                    ✕
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         4. BUTTON + LINK
+                    =========================== -->
+
+                    <div class="form-section">
+
+                        <div class="section-number">
+                            04
+                        </div>
+
+                        <div class="section-content">
+
+                            <div class="section-heading">
+
+                                <div>
+
+                                    <label>
+                                        Button + Link
+                                    </label>
+
+                                    <small>
+                                        Setiap button memiliki link tujuan sendiri.
+                                    </small>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    id="addButtonBtn"
+                                    class="btn-add"
+                                >
+                                    + Tambah Button
+                                </button>
+
+                            </div>
+
+
+                            <div id="buttonsContainer">
+
+                            </div>
+
+
+                            <div
+                                id="emptyButtons"
+                                class="empty-buttons"
+                            >
+
+                                Belum ada button.
+                                Klik <strong>+ Tambah Button</strong>
+                                untuk menambahkan.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==========================
+                         5. FOOTER
+                    =========================== -->
+
+                    <div class="form-section footer-section">
+
+                        <div class="section-number">
+                            05
+                        </div>
+
+                        <div class="section-content">
+
+                            <div class="section-heading">
+
+                                <div>
+                                    <label>
+                                        Footer Template
+                                    </label>
+
+                                    <small>
+                                        Footer otomatis ditempatkan di bagian paling bawah post.
+                                    </small>
+                                </div>
+
+                                <label class="switch-label">
+
+                                    <input
+                                        type="checkbox"
+                                        id="enableFooter"
+                                        checked
+                                    >
+
+                                    <span class="switch"></span>
+
+                                    <span>
+                                        Aktif
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                            <!-- FOOTER TEXT -->
+
+                            <div class="footer-subsection">
+
+                                <label for="footerTemplate">
+                                    Footer Text
+                                </label>
+
+                                <textarea
+                                    id="footerTemplate"
+                                    class="footer-textarea"
+                                    rows="6"
+                                    placeholder="Tulis teks footer..."
+                                ></textarea>
+
+                                <div class="footer-tools">
+
+                                    <span id="footerCharCount">
+                                        0 karakter
+                                    </span>
+
+                                    <button
+                                        type="button"
+                                        id="resetFooterBtn"
+                                        class="btn-reset-footer"
+                                    >
+                                        Default Footer
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- FOOTER BUTTON -->
+
+                            <div class="footer-subsection">
+
+                                <div class="section-heading">
+
+                                    <div>
+
+                                        <label>
+                                            Footer Button
+                                        </label>
+
+                                        <small>
+                                            Button footer dapat memiliki link sendiri.
+                                        </small>
+
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        id="addFooterButtonBtn"
+                                        class="btn-add"
+                                    >
+                                        + Tambah Footer Button
+                                    </button>
+
+                                </div>
+
+
+                                <div id="footerButtonsContainer">
+                                </div>
+
+
+                                <div
+                                    id="emptyFooterButtons"
+                                    class="empty-buttons"
+                                >
+                                    Belum ada Footer Button.
+                                    Klik
+                                    <strong>+ Tambah Footer Button</strong>
+                                    untuk menambahkan.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- ==========================
+                         ACTION
+                    =========================== -->
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="resetPostBtn"
+                            class="btn-secondary"
+                        >
+                            Reset
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn-primary"
+                        >
+                            💾 Simpan Post
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </section>
+
+
+            <!-- ==============================
+                 PREVIEW
+            =============================== -->
+
+            <section class="panel preview-panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h2>👁 Preview</h2>
+
+                        <p>
+                            Tampilan post sebelum dikirim
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="telegram-preview">
+
+
+                    <!-- TELEGRAM HEADER -->
+
+                    <div class="preview-header">
+
+                        <div class="telegram-avatar">
+                            🤖
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Telegram Auto Poster
+                            </strong>
+
+                            <span>
+                                bot
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <div class="preview-message">
+
+
+                        <!-- MEDIA -->
+
+                        <div
+                            id="previewMedia"
+                            class="preview-media hidden"
+                        >
+
+                            <img
+                                id="previewImage"
+                                alt="Preview"
+                            >
+
+                            <video
+                                id="previewVideo"
+                                controls
+                            ></video>
+
+                        </div>
+
+
+                        <!-- TITLE -->
+
+                        <div
+                            id="previewTitle"
+                            class="preview-title"
+                        >
+                            Judul Post
+                        </div>
+
+
+                        <!-- TEXT -->
+
+                        <div
+                            id="previewContent"
+                            class="preview-content"
+                        >
+                            Isi pesan akan muncul di sini...
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <div
+                            id="previewButtons"
+                            class="preview-buttons"
+                        >
+                        </div>
+
+
+                        <!-- FOOTER -->
+
+                        <div
+                            id="previewFooter"
+                            class="preview-footer"
+                        >
+
+                            <div class="footer-divider">
+                            </div>
+
+                            <div
+                                id="previewFooterContent"
+                                class="preview-footer-content"
+                            >
+                            </div>
+
+                            <div
+                                id="previewFooterButtons"
+                                class="preview-footer-buttons"
+                            >
+                            </div>
+
+                        </div>
+
+
+                        <!-- TIME -->
+
+                        <div class="preview-time">
+                            20:00 ✓✓
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<script src="posts.js"></script>
+
+</body>
+
+</html>

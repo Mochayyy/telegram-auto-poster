@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Logs - Telegram Auto Poster</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="logs.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                ✈️
+            </div>
+
+            <div>
+                <strong>TELEGRAM</strong>
+                <span>AUTO POSTER</span>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a
+                href="index.html"
+                class="nav-item"
+            >
+                <span>📊</span>
+                Dashboard
+            </a>
+
+            <button class="nav-item">
+                <span>🤖</span>
+                Bot Manager
+            </button>
+
+            <button class="nav-item">
+                <span>📡</span>
+                Destinations
+            </button>
+
+            <a
+                href="post-list.html"
+                class="nav-item"
+            >
+                <span>📝</span>
+                Posts
+            </a>
+
+            <a
+                href="scheduler.html"
+                class="nav-item"
+            >
+                <span>⏰</span>
+                Scheduler
+            </a>
+
+            <a
+                href="logs.html"
+                class="nav-item active"
+            >
+                <span>📋</span>
+                Logs
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <span>⚙️</span>
+
+            Settings
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    Logs
+                </h1>
+
+                <p>
+                    Riwayat aktivitas Telegram Auto Poster
+                </p>
+
+            </div>
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                System Online
+
+            </div>
+
+        </div>
+
+
+        <section class="logs-card">
+
+            <div class="logs-header">
+
+                <div>
+
+                    <h2>
+                        Activity Logs
+                    </h2>
+
+                    <p>
+                        Maksimal 200 aktivitas terakhir
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="refreshLogsBtn"
+                    class="btn-refresh"
+                >
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                id="logsList"
+                class="logs-list"
+            >
+
+                <div class="empty-logs">
+                    Memuat logs...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="logs.js"></script>
+
+</body>
+
+</html>

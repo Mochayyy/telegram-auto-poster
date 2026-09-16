@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Scheduler - Telegram Auto Poster</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+
+<link
+    rel="stylesheet"
+    href="scheduler.css"
+>
+
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- =========================================
+     SIDEBAR
+========================================== -->
+
+<aside class="sidebar">
+
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            ✈️
+        </div>
+
+        <div>
+
+            <strong>
+                TELEGRAM
+            </strong>
+
+            <span>
+                AUTO POSTER
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+
+        <button
+            class="nav-item"
+            onclick="location.href='index.html'"
+        >
+
+            <span>📊</span>
+
+            Dashboard
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="location.href='bots.html'"
+        >
+
+            <span>🤖</span>
+
+            Bot Manager
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="location.href='destinations.html'"
+        >
+
+            <span>📡</span>
+
+            Destinations
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="location.href='post-list.html'"
+        >
+
+            <span>📝</span>
+
+            Posts
+
+        </button>
+
+
+        <!-- SCHEDULER ACTIVE -->
+
+        <button
+            class="nav-item active"
+        >
+
+            <span>⏰</span>
+
+            Scheduler
+
+        </button>
+
+
+        <button
+            class="nav-item"
+            onclick="location.href='logs.html'"
+        >
+
+            <span>📋</span>
+
+            Logs
+
+        </button>
+
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+        <span>⚙️</span>
+
+        Settings
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =========================================
+     MAIN
+========================================== -->
+
+<main class="main">
+
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+
+            <h1>
+                Scheduler
+            </h1>
+
+            <p>
+                Atur jadwal otomatis untuk mengirim Post Telegram
+            </p>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            System Online
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         SCHEDULER CONTENT
+    ========================================== -->
+
+    <section class="scheduler-page">
+
+
+        <!-- CREATE SCHEDULE -->
+
+        <div class="scheduler-card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        ⏰ Buat Jadwal Baru
+                    </h2>
+
+                    <p>
+                        Pilih Bot, beberapa Destination, Post dan waktu pengiriman.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <form id="scheduleForm">
+
+
+                <!-- BOT -->
+
+                <div class="form-group">
+
+                    <label for="scheduleBot">
+                        🤖 Bot
+                    </label>
+
+                    <select
+                        id="scheduleBot"
+                        required
+                    >
+
+                        <option value="">
+                            Memuat Bot...
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DESTINATIONS -->
+
+                <div class="form-group">
+
+                    <label>
+                        📡 Destination
+                    </label>
+
+                    <div class="destination-toolbar">
+
+                        <button
+                            type="button"
+                            id="selectAllDestinationsBtn"
+                            class="btn-secondary btn-small"
+                        >
+                            ☑ Pilih Semua
+                        </button>
+
+                        <button
+                            type="button"
+                            id="clearDestinationsBtn"
+                            class="btn-secondary btn-small"
+                        >
+                            ✕ Hapus Semua
+                        </button>
+
+                        <span
+                            id="destinationCount"
+                            class="destination-count"
+                        >
+                            0 destination dipilih
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="destinationList"
+                        class="destination-list"
+                    >
+
+                        <div class="destination-empty">
+                            Pilih Bot terlebih dahulu.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- POST -->
+
+                <div class="form-group">
+
+                    <label for="schedulePost">
+                        📝 Post
+                    </label>
+
+                    <select
+                        id="schedulePost"
+                        required
+                    >
+
+                        <option value="">
+                            Memuat Post...
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- DATE + TIME -->
+
+                <div class="schedule-grid">
+
+
+                    <div class="form-group">
+
+                        <label for="scheduleDate">
+                            📅 Tanggal
+                        </label>
+
+                        <input
+                            type="date"
+                            id="scheduleDate"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label for="scheduleTime">
+                            ⏰ Jam
+                        </label>
+
+                        <input
+                            type="time"
+                            id="scheduleTime"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="scheduleStatus">
+                        Status
+                    </label>
+
+                    <select
+                        id="scheduleStatus"
+                        name="status"
+                    >
+
+                        <option
+                            value="scheduled"
+                            selected
+                        >
+                            Terjadwal
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- ACTION -->
+
+                <div class="schedule-actions">
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        💾 Jadwalkan Post
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="resetScheduleBtn"
+                        class="btn-secondary"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+
+        <!-- =========================================
+             SCHEDULE LIST
+        ========================================== -->
+
+        <div class="scheduler-card">
+
+
+            <div class="card-header">
+
+
+                <div>
+
+                    <h2>
+                        📋 Daftar Jadwal
+                    </h2>
+
+                    <p>
+                        Semua jadwal pengiriman yang telah dibuat.
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    id="refreshScheduleBtn"
+                    class="btn-secondary"
+                >
+                    🔄 Refresh
+                </button>
+
+
+            </div>
+
+
+
+            <div
+                id="scheduleList"
+                class="schedule-list"
+            >
+
+                <div class="schedule-empty">
+
+                    <div class="empty-icon">
+                        ⏰
+                    </div>
+
+                    <h3>
+                        Belum ada jadwal
+                    </h3>
+
+                    <p>
+                        Buat jadwal pertama Anda menggunakan form di atas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+</div>
+
+<script src="scheduler.js"></script>
+
+</body>
+
+</html>

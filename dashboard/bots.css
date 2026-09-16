@@ -1,0 +1,412 @@
+/* ========================================
+   BOT MANAGER
+======================================== */
+
+.bot-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.bot-toolbar h2 {
+    margin: 0 0 5px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.bot-toolbar p {
+    margin: 0;
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* ========================================
+   FORM
+======================================== */
+
+.bot-add-panel {
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    color: #ddd;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid rgba(255, 30, 60, 0.18);
+
+    background: rgba(255, 255, 255, 0.035);
+
+    color: #fff;
+
+    outline: none;
+
+    transition: 0.2s ease;
+
+    font-size: 13px;
+}
+
+.form-group input::placeholder {
+    color: #666;
+}
+
+.form-group input:focus {
+    border-color: rgba(255, 30, 60, 0.65);
+
+    background: rgba(255, 30, 60, 0.035);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 30, 60, 0.08),
+        0 0 18px rgba(255, 30, 60, 0.12);
+}
+
+.form-group small {
+    color: #777;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.btn-primary,
+.btn-secondary {
+    border: none;
+
+    border-radius: 9px;
+
+    padding: 10px 16px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-primary {
+    color: #fff;
+
+    background: #ff1e3c;
+
+    box-shadow:
+        0 0 15px rgba(255, 30, 60, 0.18);
+}
+
+.btn-primary:hover {
+    background: #ff3450;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 0 22px rgba(255, 30, 60, 0.32);
+}
+
+.btn-secondary {
+    color: #ddd;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-secondary:hover {
+    color: #fff;
+
+    background: rgba(255, 30, 60, 0.08);
+
+    border-color: rgba(255, 30, 60, 0.3);
+}
+
+
+/* ========================================
+   BOT COUNT
+======================================== */
+
+.bot-count {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    color: #ff4d6d;
+
+    background: rgba(255, 30, 60, 0.08);
+
+    border: 1px solid rgba(255, 30, 60, 0.18);
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+/* ========================================
+   BOT LIST
+======================================== */
+
+.bots-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.bot-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 15px 16px;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 30, 60, 0.1);
+
+    transition: 0.2s ease;
+}
+
+.bot-card:hover {
+    background: rgba(255, 30, 60, 0.045);
+
+    border-color: rgba(255, 30, 60, 0.28);
+
+    transform: translateY(-1px);
+}
+
+.bot-icon {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: rgba(255, 30, 60, 0.08);
+
+    border: 1px solid rgba(255, 30, 60, 0.18);
+
+    font-size: 20px;
+}
+
+.bot-info {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.bot-info strong {
+    display: block;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.bot-info span {
+    display: block;
+
+    color: #888;
+
+    font-size: 12px;
+}
+
+.bot-meta {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 11px;
+}
+
+.bot-status {
+    flex-shrink: 0;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.bot-status.active {
+    color: #4ade80;
+
+    background: rgba(74, 222, 128, 0.08);
+
+    border: 1px solid rgba(74, 222, 128, 0.18);
+}
+
+.bot-status.inactive {
+    color: #999;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bot-delete {
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    padding: 7px;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.bot-delete:hover {
+    color: #ff4d6d;
+
+    background: rgba(255, 30, 60, 0.08);
+}
+
+
+/* ========================================
+   EMPTY
+======================================== */
+
+.bot-empty {
+    text-align: center;
+
+    padding: 45px 20px;
+
+    color: #777;
+}
+
+.bot-empty-icon {
+    font-size: 38px;
+
+    margin-bottom: 12px;
+
+    opacity: 0.8;
+}
+
+.bot-empty h3 {
+    margin: 0 0 7px;
+
+    color: #ccc;
+
+    font-size: 15px;
+}
+
+.bot-empty p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 12px;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 800px) {
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: auto;
+    }
+
+    .bot-toolbar {
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .bot-card {
+        align-items: flex-start;
+    }
+
+    .bot-status {
+        display: none;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+}

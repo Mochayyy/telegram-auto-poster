@@ -1,0 +1,308 @@
+.post-toolbar {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+
+.search-box {
+
+    flex: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 13px;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background: #09090b;
+
+    border-radius: 9px;
+}
+
+
+.search-box span {
+
+    color: #777;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 12px;
+}
+
+
+.post-list {
+
+    display: grid;
+
+    gap: 15px;
+}
+
+
+.post-card {
+
+    padding: 18px;
+
+    border:
+        1px solid rgba(255,255,255,0.07);
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border-radius: 12px;
+
+    transition: 0.2s;
+}
+
+
+.post-card:hover {
+
+    border-color:
+        rgba(255,23,68,0.3);
+
+    box-shadow:
+        0 0 20px
+        rgba(255,23,68,0.06);
+}
+
+
+.post-card-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 12px;
+}
+
+
+.post-title {
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+.post-date {
+
+    color: #686870;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+}
+
+
+.post-content {
+
+    color: #aaaab0;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    max-height: 120px;
+
+    overflow: hidden;
+
+    margin-bottom: 14px;
+}
+
+
+.post-footer {
+
+    padding: 10px;
+
+    margin-bottom: 10px;
+
+    border-left:
+        2px solid #ff1744;
+
+    background:
+        rgba(255,23,68,0.04);
+
+    color: #999;
+
+    font-size: 10px;
+
+    white-space: pre-wrap;
+}
+
+
+.post-buttons {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    margin-bottom: 14px;
+}
+
+
+.post-button {
+
+    padding: 6px 10px;
+
+    border-radius: 6px;
+
+    background:
+        rgba(55,150,255,0.08);
+
+    border:
+        1px solid rgba(55,150,255,0.18);
+
+    color: #55aaff;
+
+    font-size: 10px;
+}
+
+
+.post-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 7px;
+
+    padding-top: 12px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.05);
+}
+
+
+.post-actions button {
+
+    border: 0;
+
+    border-radius: 7px;
+
+    padding: 7px 11px;
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.btn-preview {
+
+    background:
+        rgba(55,150,255,0.1);
+
+    color: #55aaff;
+}
+
+
+.btn-edit {
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: #ccc;
+}
+
+
+.btn-delete {
+
+    background:
+        rgba(255,23,68,0.1);
+
+    color: #ff5874;
+}
+
+
+.empty-posts {
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #686870;
+
+    border:
+        1px dashed rgba(255,255,255,0.08);
+
+    border-radius: 12px;
+}
+
+
+.loading {
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #777;
+}
+
+
+@media (max-width: 650px) {
+
+    .post-toolbar {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .post-card-header {
+
+        flex-direction: column;
+
+        gap: 5px;
+    }
+
+
+    .post-actions {
+
+        justify-content: stretch;
+    }
+
+
+    .post-actions button {
+
+        flex: 1;
+    }
+
+}
