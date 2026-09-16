@@ -324,6 +324,8 @@ async function updateSystemStatus() {
     const databaseEl = document.getElementById("databaseStatus");
     const telegramEl = document.getElementById("telegramStatus");
     const workerEl = document.getElementById("workerStatus");
+    const workerHostEl = document.getElementById("workerHost");
+    const workerHeartbeatEl = document.getElementById("workerHeartbeat");
 
     try {
         const response = await fetch("/api/health", {
@@ -370,17 +372,39 @@ async function updateSystemStatus() {
         if (data.success && data.status === "online") {
             workerEl.textContent = "● Online";
             workerEl.className = "online";
+
+            workerHostEl.textContent = data.hostname || "-";
+            workerHostEl.className = "online";
+
+            workerHeartbeatEl.textContent =
+                data.age_seconds !== undefined
+                    ? `${data.age_seconds} detik lalu`
+                    : "Baru saja";
+
+            workerHeartbeatEl.className = "online";
+
         } else {
             workerEl.textContent = "● Offline";
             workerEl.className = "offline";
+
+            workerHostEl.textContent = "-";
+            workerHostEl.className = "offline";
+
+            workerHeartbeatEl.textContent = "Tidak aktif";
+            workerHeartbeatEl.className = "offline";
         }
 
     } catch (error) {
         workerEl.textContent = "● Offline";
         workerEl.className = "offline";
+
+        workerHostEl.textContent = "-";
+        workerHostEl.className = "offline";
+
+        workerHeartbeatEl.textContent = "Tidak aktif";
+        workerHeartbeatEl.className = "offline";
     }
 }
 
 updateSystemStatus();
-
 setInterval(updateSystemStatus, 5000);
