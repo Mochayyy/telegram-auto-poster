@@ -318,3 +318,69 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 });
+
+async function updateSystemStatus() {
+    const serverEl = document.getElementById("serverStatus");
+    const databaseEl = document.getElementById("databaseStatus");
+    const telegramEl = document.getElementById("telegramStatus");
+    const workerEl = document.getElementById("workerStatus");
+
+    try {
+        const response = await fetch("/api/health", {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error("Server error");
+        }
+
+        const data = await response.json();
+
+        if (data.success && data.status === "online") {
+            serverEl.textContent = "● Online";
+            serverEl.className = "online";
+
+            databaseEl.textContent = "● Connected";
+            databaseEl.className = "online";
+
+            telegramEl.textContent = "● Ready";
+            telegramEl.className = "online";
+        } else {
+            throw new Error("Server offline");
+        }
+
+    } catch (error) {
+        serverEl.textContent = "● Offline";
+        serverEl.className = "offline";
+
+        databaseEl.textContent = "● Offline";
+        databaseEl.className = "offline";
+
+        telegramEl.textContent = "● Offline";
+        telegramEl.className = "offline";
+    }
+
+    try {
+        const response = await fetch("/api/worker-status", {
+            cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.status === "online") {
+            workerEl.textContent = "● Online";
+            workerEl.className = "online";
+        } else {
+            workerEl.textContent = "● Offline";
+            workerEl.className = "offline";
+        }
+
+    } catch (error) {
+        workerEl.textContent = "● Offline";
+        workerEl.className = "offline";
+    }
+}
+
+updateSystemStatus();
+
+setInterval(updateSystemStatus, 5000);

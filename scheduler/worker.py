@@ -2,6 +2,7 @@ import os
 import sqlite3
 import time
 import asyncio
+import socket
 from datetime import datetime
 
 from dotenv import load_dotenv
@@ -536,6 +537,45 @@ def process_schedule(schedule):
             error_message
         )
 
+def update_worker_heartbeat():
+    try:
+        conn = get_db()
+
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS worker_status (
+                id INTEGER PRIMARY KEY CHECK (id = 1),
+                status TEXT NOT NULL,
+                hostname TEXT DEFAULT '',
+                last_seen DATETIME NOT NULL
+            )
+        """)
+
+        conn.execute("""
+            INSERT INTO worker_status (
+                id,
+                status,
+                hostname,
+                last_seen
+            )
+            VALUES (
+                1,
+                'online',
+                ?,
+                CURRENT_TIMESTAMP
+            )
+            ON CONFLICT(id) DO UPDATE SET
+                status = 'online',
+                hostname = excluded.hostname,
+                last_seen = excluded.last_seen
+        """, (
+            socket.gethostname(),
+        ))
+
+        conn.commit()
+        conn.close()
+
+    except Exception as e:
+        print(f"⚠️ Worker heartbeat error: {e}")
 
 # =========================================================
 # MAIN WORKER
@@ -554,6 +594,8 @@ def run_worker():
 
     while True:
         try:
+            update_worker_heartbeat()
+
             schedules = get_due_schedules()
 
             for schedule in schedules:

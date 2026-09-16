@@ -2,6 +2,7 @@ import os
 import json
 import sqlite3
 import asyncio
+from datetime import datetime, timezone
 
 from flask import Flask, request, jsonify, send_from_directory
 from werkzeug.utils import secure_filename
@@ -1682,6 +1683,63 @@ def health():
         "status": "online"
     })
 
+# =========================================================
+# WORKER STATUS
+# =========================================================
+
+@app.route("/api/worker-status", methods=["GET"])
+def worker_status():
+    conn = None
+
+    try:
+        conn = get_db()
+
+        row = conn.execute("""
+            SELECT
+                status,
+                hostname,
+                last_seen
+            FROM worker_status
+            WHERE id = 1
+        """).fetchone()
+
+        if not row:
+            return jsonify({
+                "success": True,
+                "status": "offline",
+                "hostname": "",
+                "last_seen": None
+            })
+
+        last_seen = datetime.strptime(
+            row["last_seen"],
+            "%Y-%m-%d %H:%M:%S"
+        ).replace(tzinfo=timezone.utc)
+
+        now = datetime.now(timezone.utc)
+
+        age_seconds = (now - last_seen).total_seconds()
+
+        is_online = age_seconds <= 5
+
+        return jsonify({
+            "success": True,
+            "status": "online" if is_online else "offline",
+            "hostname": row["hostname"],
+            "last_seen": row["last_seen"],
+            "age_seconds": round(age_seconds, 1)
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "status": "unknown",
+            "error": str(e)
+        }), 500
+
+    finally:
+        if conn:
+            conn.close()
 
 # =========================================================
 # START SERVER

@@ -221,16 +221,31 @@
 
 
                     <div class="system-status">
+  <div>
+    <span>Server</span>
+    <strong id="serverStatus" class="waiting">Checking...</strong>
+  </div>
 
-                        <div>
-                            <span>Database</span>
-                            <strong class="online">● Connected</strong>
-                        </div>
+  <div>
+    <span>Database</span>
+    <strong id="databaseStatus" class="waiting">Checking...</strong>
+  </div>
 
-                        <div>
-                            <span>Telegram API</span>
-                            <strong class="online">● Ready</strong>
-                        </div>
+  <div>
+    <span>Telegram API</span>
+    <strong id="telegramStatus" class="waiting">Checking...</strong>
+  </div>
+
+  <div>
+    <span>Scheduler Worker</span>
+    <strong id="workerStatus" class="waiting">Checking...</strong>
+  </div>
+
+  <div>
+    <span>Backup</span>
+    <strong id="backupStatus" class="waiting">Ready</strong>
+  </div>
+</div>
 
                         <div>
                             <span>Scheduler</span>
