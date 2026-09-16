@@ -1,9 +1,9 @@
-import os
+﻿import os
 import sqlite3
 import time
 import asyncio
 import socket
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
 from telegram import Bot, InlineKeyboardButton, InlineKeyboardMarkup
@@ -50,7 +50,7 @@ def get_due_schedules():
         conn = get_db()
         cursor = conn.cursor()
 
-        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        now = (datetime.now() + timedelta(hours=7)).strftime("%Y-%m-%d %H:%M:%S")
 
         cursor.execute(
             """
@@ -99,7 +99,7 @@ def get_due_schedules():
         return cursor.fetchall()
 
     except Exception as e:
-        print("❌ ERROR GET DUE SCHEDULES:", str(e))
+        print("âŒ ERROR GET DUE SCHEDULES:", str(e))
         return []
 
     finally:
@@ -134,7 +134,7 @@ def claim_schedule(schedule_id):
         return cursor.rowcount == 1
 
     except Exception as e:
-        print("❌ ERROR CLAIM SCHEDULE:", str(e))
+        print("âŒ ERROR CLAIM SCHEDULE:", str(e))
         return False
 
     finally:
@@ -168,7 +168,7 @@ def get_post_buttons(post_id):
         return cursor.fetchall()
 
     except Exception as e:
-        print("❌ ERROR GET POST BUTTONS:", str(e))
+        print("âŒ ERROR GET POST BUTTONS:", str(e))
         return []
 
     finally:
@@ -202,7 +202,7 @@ def get_footer_buttons(post_id):
         return cursor.fetchall()
 
     except Exception as e:
-        print("❌ ERROR GET FOOTER BUTTONS:", str(e))
+        print("âŒ ERROR GET FOOTER BUTTONS:", str(e))
         return []
 
     finally:
@@ -306,7 +306,7 @@ def save_log(
         conn.commit()
 
     except Exception as e:
-        print("❌ ERROR SAVE LOG:", str(e))
+        print("âŒ ERROR SAVE LOG:", str(e))
 
     finally:
         if conn:
@@ -336,7 +336,7 @@ def update_schedule_status(schedule_id, status):
         conn.commit()
 
     except Exception as e:
-        print("❌ ERROR UPDATE SCHEDULE:", str(e))
+        print("âŒ ERROR UPDATE SCHEDULE:", str(e))
 
     finally:
         if conn:
@@ -423,7 +423,7 @@ async def send_post(schedule):
 
             media_file = os.path.normpath(media_file)
 
-            print(f"🖼️ Media       : {media_file}")
+            print(f"ðŸ–¼ï¸ Media       : {media_file}")
 
             extension = os.path.splitext(media_file)[1].lower()
 
@@ -489,7 +489,7 @@ def process_schedule(schedule):
 
     print("")
     print("=" * 60)
-    print("🚀 PROCESSING SCHEDULE")
+    print("ðŸš€ PROCESSING SCHEDULE")
     print(f"Schedule ID : {schedule_id}")
     print(f"Bot         : {schedule['bot_name']}")
     print(f"Destination : {schedule['destination_name']}")
@@ -513,15 +513,15 @@ def process_schedule(schedule):
             "Post berhasil dikirim ke Telegram."
         )
 
-        print("✅ POST BERHASIL DIKIRIM!")
+        print("âœ… POST BERHASIL DIKIRIM!")
         print(
-            f"📡 Destination: {schedule['destination_name']}"
+            f"ðŸ“¡ Destination: {schedule['destination_name']}"
         )
 
     except Exception as e:
         error_message = str(e)
 
-        print("❌ GAGAL MENGIRIM POST:")
+        print("âŒ GAGAL MENGIRIM POST:")
         print(error_message)
 
         update_schedule_status(
@@ -575,7 +575,7 @@ def update_worker_heartbeat():
         conn.close()
 
     except Exception as e:
-        print(f"⚠️ Worker heartbeat error: {e}")
+        print(f"âš ï¸ Worker heartbeat error: {e}")
 
 # =========================================================
 # MAIN WORKER
@@ -584,12 +584,12 @@ def update_worker_heartbeat():
 def run_worker():
     print("")
     print("=" * 60)
-    print("🚀 TELEGRAM AUTO POSTER")
-    print("🚀 SCHEDULER ENGINE")
+    print("ðŸš€ TELEGRAM AUTO POSTER")
+    print("ðŸš€ SCHEDULER ENGINE")
     print("=" * 60)
-    print(f"📁 Database : {DB_PATH}")
-    print("⏱️ Checking schedule setiap 1 detik...")
-    print("🟢 Scheduler Engine aktif.")
+    print(f"ðŸ“ Database : {DB_PATH}")
+    print("â±ï¸ Checking schedule setiap 1 detik...")
+    print("ðŸŸ¢ Scheduler Engine aktif.")
     print("=" * 60)
 
     while True:
@@ -613,11 +613,11 @@ def run_worker():
 
         except KeyboardInterrupt:
             print("")
-            print("🛑 Scheduler Engine dihentikan.")
+            print("ðŸ›‘ Scheduler Engine dihentikan.")
             break
 
         except Exception as e:
-            print("❌ WORKER ERROR:", str(e))
+            print("âŒ WORKER ERROR:", str(e))
             time.sleep(3)
 
 
@@ -627,3 +627,4 @@ def run_worker():
 
 if __name__ == "__main__":
     run_worker()
+
