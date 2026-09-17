@@ -358,8 +358,33 @@ def create_post():
             request.form.get("footer_buttons", "[]")
         )
 
+        uploaded_media = request.files.get("media")
+
+        print(
+            "📦 CREATE POST MEDIA:",
+            {
+                "has_file": uploaded_media is not None,
+                "filename": (
+                    uploaded_media.filename
+                    if uploaded_media
+                    else None
+                ),
+                "content_length": (
+                    uploaded_media.content_length
+                    if uploaded_media
+                    else None
+                ),
+                "media_dir": MEDIA_DIR,
+            }
+        )
+
         media_path = save_uploaded_media(
-            request.files.get("media")
+            uploaded_media
+        )
+
+        print(
+            "📁 SAVED MEDIA:",
+            media_path
         )
 
         conn = get_db()
