@@ -15,7 +15,7 @@ from werkzeug.utils import secure_filename
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "data", "telegram_poster.db")
 DASHBOARD_DIR = os.path.join(BASE_DIR, "dashboard")
-MEDIA_DIR = os.path.join(BASE_DIR, "media")
+MEDIA_DIR = os.path.join(BASE_DIR, "data", "media")
 
 os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 os.makedirs(MEDIA_DIR, exist_ok=True)

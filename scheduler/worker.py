@@ -403,7 +403,15 @@ async def send_post(schedule):
                     filename
                 )
 
-                # 4. Cari juga relatif terhadap BASE_DIR
+                # 4. Cari di folder media persisten Railway Volume
+                persistent_media = os.path.join(
+                    BASE_DIR,
+                    "data",
+                    "media",
+                    filename
+                )
+
+                # 5. Cari juga relatif terhadap BASE_DIR
                 relative_media = os.path.join(
                     BASE_DIR,
                     media_file
@@ -411,6 +419,9 @@ async def send_post(schedule):
 
                 if os.path.exists(project_media):
                     media_file = os.path.abspath(project_media)
+
+                elif os.path.exists(persistent_media):
+                    media_file = os.path.abspath(persistent_media)
 
                 elif os.path.exists(relative_media):
                     media_file = os.path.abspath(relative_media)
