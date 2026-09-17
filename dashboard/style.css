@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -53,6 +54,9 @@ body {
 
 .sidebar {
     width: 250px;
+
+    position: relative;
+    z-index: 100;
 
     background: rgba(10, 10, 12, 0.94);
 
@@ -140,6 +144,12 @@ nav {
     gap: 12px;
 
     transition: 0.2s;
+}
+
+.nav-item {
+    position: relative;
+    z-index: 101;
+    pointer-events: auto;
 }
 
 .nav-item:hover {
