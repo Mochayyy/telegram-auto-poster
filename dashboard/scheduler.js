@@ -27,11 +27,6 @@ const destinationCount =
 const schedulePost =
     document.getElementById("schedulePost");
 
-const scheduleDate =
-    document.getElementById("scheduleDate");
-
-const scheduleTime =
-    document.getElementById("scheduleTime");
 
 const scheduleStatus =
     document.getElementById("scheduleStatus");
@@ -53,7 +48,36 @@ const scheduleList =
 
 
 // =========================================
-// DEFAULT TANGGAL
+// BULK SCHEDULER - DEFAULT TANGGAL
+// =========================================
+
+const scheduleStartDate =
+    document.getElementById("scheduleStartDate");
+
+const scheduleEndDate =
+    document.getElementById("scheduleEndDate");
+
+const scheduleTimes =
+    document.getElementById("scheduleTimes");
+
+const addScheduleTimeBtn =
+    document.getElementById("addScheduleTimeBtn");
+
+const previewDays =
+    document.getElementById("previewDays");
+
+const previewTimes =
+    document.getElementById("previewTimes");
+
+const previewDestinations =
+    document.getElementById("previewDestinations");
+
+const previewTotal =
+    document.getElementById("previewTotal");
+
+
+// =========================================
+// DEFAULT DATE
 // =========================================
 
 function getToday() {
@@ -64,22 +88,31 @@ function getToday() {
         now.getFullYear();
 
     const month =
-        String(
-            now.getMonth() + 1
-        ).padStart(2, "0");
+        String(now.getMonth() + 1)
+            .padStart(2, "0");
 
     const day =
-        String(
-            now.getDate()
-        ).padStart(2, "0");
+        String(now.getDate())
+            .padStart(2, "0");
 
     return `${year}-${month}-${day}`;
+}
+
+
+if (scheduleStartDate) {
+
+    scheduleStartDate.value =
+        getToday();
 
 }
 
 
-scheduleDate.value =
-    getToday();
+if (scheduleEndDate) {
+
+    scheduleEndDate.value =
+        getToday();
+
+}
 
 
 // =========================================
@@ -93,6 +126,323 @@ if (scheduleStatus) {
 
 }
 
+
+// =========================================
+// GET SELECTED WEEKDAYS
+// =========================================
+
+function getSelectedWeekdays() {
+
+    return Array.from(
+        document.querySelectorAll(
+            'input[name="scheduleWeekday"]:checked'
+        )
+    ).map(
+        checkbox =>
+            Number(checkbox.value)
+    );
+
+}
+
+
+// =========================================
+// GET SELECTED TIMES
+// =========================================
+
+function getScheduleTimes() {
+
+    if (!scheduleTimes) {
+        return [];
+    }
+
+    return Array.from(
+        scheduleTimes.querySelectorAll(
+            ".schedule-time-input"
+        )
+    )
+        .map(
+            input =>
+                input.value
+        )
+        .filter(Boolean);
+
+}
+
+
+// =========================================
+// ADD JAM
+// =========================================
+
+function addScheduleTime() {
+
+    if (!scheduleTimes) {
+        return;
+    }
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "schedule-time-row";
+
+    row.innerHTML = `
+        <input
+            type="time"
+            class="schedule-time-input"
+            value="20:00"
+        >
+
+        <button
+            type="button"
+            class="btn-secondary btn-small remove-time-btn"
+        >
+            ✕
+        </button>
+    `;
+
+    scheduleTimes.appendChild(row);
+
+    updateSchedulePreview();
+
+}
+
+
+if (addScheduleTimeBtn) {
+
+    addScheduleTimeBtn.addEventListener(
+        "click",
+        addScheduleTime
+    );
+
+}
+
+
+// =========================================
+// HAPUS JAM
+// =========================================
+
+if (scheduleTimes) {
+
+    scheduleTimes.addEventListener(
+        "click",
+        event => {
+
+            const button =
+                event.target.closest(
+                    ".remove-time-btn"
+                );
+
+            if (!button) {
+                return;
+            }
+
+            const rows =
+                scheduleTimes.querySelectorAll(
+                    ".schedule-time-row"
+                );
+
+            // Minimal 1 jam harus tetap ada
+            if (rows.length <= 1) {
+
+                alert(
+                    "⚠️ Minimal harus ada 1 jam posting."
+                );
+
+                return;
+            }
+
+            button
+                .closest(".schedule-time-row")
+                .remove();
+
+            updateSchedulePreview();
+
+        }
+    );
+
+}
+
+
+// =========================================
+// HITUNG HARI AKTIF
+// =========================================
+
+function countActiveDays(
+    startDate,
+    endDate,
+    weekdays
+) {
+
+    if (!startDate || !endDate) {
+        return 0;
+    }
+
+    const start =
+        new Date(
+            `${startDate}T00:00:00`
+        );
+
+    const end =
+        new Date(
+            `${endDate}T00:00:00`
+        );
+
+    if (
+        Number.isNaN(start.getTime()) ||
+        Number.isNaN(end.getTime()) ||
+        start > end
+    ) {
+        return 0;
+    }
+
+    let count = 0;
+
+    const current =
+        new Date(start);
+
+    while (current <= end) {
+
+        if (
+            weekdays.includes(
+                current.getDay()
+            )
+        ) {
+            count++;
+        }
+
+        current.setDate(
+            current.getDate() + 1
+        );
+
+    }
+
+    return count;
+
+}
+
+
+// =========================================
+// PREVIEW
+// =========================================
+
+function updateSchedulePreview() {
+
+    const startDate =
+        scheduleStartDate
+            ? scheduleStartDate.value
+            : "";
+
+    const endDate =
+        scheduleEndDate
+            ? scheduleEndDate.value
+            : "";
+
+    const weekdays =
+        getSelectedWeekdays();
+
+    const times =
+        getScheduleTimes();
+
+    const destinations =
+        getSelectedDestinations();
+
+    const activeDays =
+        countActiveDays(
+            startDate,
+            endDate,
+            weekdays
+        );
+
+    const total =
+        activeDays *
+        times.length *
+        destinations.length;
+
+
+    if (previewDays) {
+
+        previewDays.textContent =
+            activeDays;
+
+    }
+
+
+    if (previewTimes) {
+
+        previewTimes.textContent =
+            times.length;
+
+    }
+
+
+    if (previewDestinations) {
+
+        previewDestinations.textContent =
+            destinations.length;
+
+    }
+
+
+    if (previewTotal) {
+
+        previewTotal.textContent =
+            total;
+
+    }
+
+}
+
+
+// =========================================
+// PREVIEW EVENTS
+// =========================================
+
+if (scheduleStartDate) {
+
+    scheduleStartDate.addEventListener(
+        "change",
+        updateSchedulePreview
+    );
+
+}
+
+
+if (scheduleEndDate) {
+
+    scheduleEndDate.addEventListener(
+        "change",
+        updateSchedulePreview
+    );
+
+}
+
+
+document.addEventListener(
+    "change",
+    event => {
+
+        if (
+            event.target.matches(
+                'input[name="scheduleWeekday"]'
+            )
+        ) {
+
+            updateSchedulePreview();
+
+        }
+
+        if (
+            event.target.matches(
+                ".schedule-time-input"
+            )
+        ) {
+
+            updateSchedulePreview();
+
+        }
+
+    }
+  );
 
 // =========================================
 // ESCAPE HTML
@@ -1060,9 +1410,99 @@ function resetForm() {
     scheduleForm.reset();
 
 
-    scheduleDate.value =
+    // =====================================
+    // DEFAULT TANGGAL
+    // =====================================
+
+    const today =
         getToday();
 
+
+    if (scheduleStartDate) {
+
+        scheduleStartDate.value =
+            today;
+
+    }
+
+
+    if (scheduleEndDate) {
+
+        scheduleEndDate.value =
+            today;
+
+    }
+
+
+    // =====================================
+    // DEFAULT HARI
+    // =====================================
+
+    document
+        .querySelectorAll(
+            'input[name="scheduleWeekday"]'
+        )
+        .forEach(
+            checkbox => {
+
+                checkbox.checked =
+                    true;
+
+            }
+        );
+
+
+    // =====================================
+    // DEFAULT JAM
+    // =====================================
+
+    if (scheduleTimes) {
+
+        scheduleTimes.innerHTML = `
+
+            <div class="schedule-time-row">
+
+                <input
+                    type="time"
+                    class="schedule-time-input"
+                    value="08:00"
+                >
+
+                <button
+                    type="button"
+                    class="btn-secondary btn-small remove-time-btn"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div class="schedule-time-row">
+
+                <input
+                    type="time"
+                    class="schedule-time-input"
+                    value="12:00"
+                >
+
+                <button
+                    type="button"
+                    class="btn-secondary btn-small remove-time-btn"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+        `;
+
+    }
+
+
+    // =====================================
+    // STATUS
+    // =====================================
 
     if (scheduleStatus) {
 
@@ -1072,14 +1512,24 @@ function resetForm() {
     }
 
 
+    // =====================================
+    // DESTINATION
+    // =====================================
+
     destinationList.innerHTML = `
+
         <div class="destination-empty">
+
             Pilih Bot terlebih dahulu.
+
         </div>
+
     `;
 
 
     updateDestinationCount();
+
+    updateSchedulePreview();
 
 }
 
@@ -1091,7 +1541,7 @@ resetScheduleBtn.addEventListener(
 
 
 // =========================================
-// SAVE SCHEDULE
+// SAVE BULK SCHEDULE
 // =========================================
 
 scheduleForm.addEventListener(
@@ -1100,6 +1550,10 @@ scheduleForm.addEventListener(
 
         event.preventDefault();
 
+
+        // =====================================
+        // DATA FORM
+        // =====================================
 
         const botId =
             scheduleBot.value;
@@ -1113,12 +1567,39 @@ scheduleForm.addEventListener(
             schedulePost.value;
 
 
-        const date =
-            scheduleDate.value;
+        const startDate =
+            scheduleStartDate
+                ? scheduleStartDate.value
+                : "";
 
 
-        const time =
-            scheduleTime.value;
+        const endDate =
+            scheduleEndDate
+                ? scheduleEndDate.value
+                : "";
+
+
+        const selectedWeekdays =
+            getSelectedWeekdays();
+
+
+        // =====================================
+        // AMBIL SEMUA JAM
+        // =====================================
+
+        const rawTimes =
+            getScheduleTimes();
+
+
+        // Hapus jam kosong + duplikat
+        const selectedTimes =
+            [
+                ...new Set(
+                    rawTimes
+                        .filter(Boolean)
+                )
+            ]
+                .sort();
 
 
         // =====================================
@@ -1169,13 +1650,16 @@ scheduleForm.addEventListener(
 
 
         // =====================================
-        // VALIDASI TANGGAL / WAKTU
+        // VALIDASI TANGGAL
         // =====================================
 
-        if (!date || !time) {
+        if (
+            !startDate ||
+            !endDate
+        ) {
 
             alert(
-                "⚠️ Tanggal dan waktu wajib diisi."
+                "⚠️ Tanggal mulai dan tanggal selesai wajib diisi."
             );
 
             return;
@@ -1183,24 +1667,40 @@ scheduleForm.addEventListener(
         }
 
 
-        // =====================================
-        // DATETIME
-        // =====================================
-
-        const scheduleDateTime =
+        const start =
             new Date(
-                `${date}T${time}:00`
+                `${startDate}T00:00:00`
+            );
+
+
+        const end =
+            new Date(
+                `${endDate}T00:00:00`
             );
 
 
         if (
             Number.isNaN(
-                scheduleDateTime.getTime()
+                start.getTime()
+            ) ||
+            Number.isNaN(
+                end.getTime()
             )
         ) {
 
             alert(
-                "⚠️ Format tanggal atau waktu tidak valid."
+                "⚠️ Format tanggal tidak valid."
+            );
+
+            return;
+
+        }
+
+
+        if (start > end) {
+
+            alert(
+                "⚠️ Tanggal mulai tidak boleh lebih besar dari tanggal selesai."
             );
 
             return;
@@ -1209,16 +1709,15 @@ scheduleForm.addEventListener(
 
 
         // =====================================
-        // HARUS FUTURE
+        // VALIDASI HARI
         // =====================================
 
         if (
-            scheduleDateTime.getTime() <=
-            Date.now()
+            selectedWeekdays.length === 0
         ) {
 
             alert(
-                "⚠️ Jadwal harus dibuat untuk waktu yang akan datang."
+                "⚠️ Silakan pilih minimal 1 hari posting."
             );
 
             return;
@@ -1226,8 +1725,192 @@ scheduleForm.addEventListener(
         }
 
 
-        const scheduleTimeValue =
-            `${date} ${time}:00`;
+        // =====================================
+        // VALIDASI JAM
+        // =====================================
+
+        if (
+            selectedTimes.length === 0
+        ) {
+
+            alert(
+                "⚠️ Silakan masukkan minimal 1 jam posting."
+            );
+
+            return;
+
+        }
+
+
+        // =====================================
+        // GENERATE SEMUA DATETIME
+        // =====================================
+
+        const schedulesToCreate = [];
+
+
+        const current =
+            new Date(start);
+
+
+        while (
+            current <= end
+        ) {
+
+            const weekday =
+                current.getDay();
+
+
+            if (
+                selectedWeekdays.includes(
+                    weekday
+                )
+            ) {
+
+                const year =
+                    current.getFullYear();
+
+
+                const month =
+                    String(
+                        current.getMonth() + 1
+                    )
+                        .padStart(2, "0");
+
+
+                const day =
+                    String(
+                        current.getDate()
+                    )
+                        .padStart(2, "0");
+
+
+                const dateString =
+                    `${year}-${month}-${day}`;
+
+
+                for (
+                    const time
+                    of selectedTimes
+                ) {
+
+                    const scheduleDateTime =
+                        new Date(
+                            `${dateString}T${time}:00`
+                        );
+
+
+                    if (
+                        Number.isNaN(
+                            scheduleDateTime.getTime()
+                        )
+                    ) {
+
+                        continue;
+
+                    }
+
+
+                    // =================================
+                    // HANYA JADWAL FUTURE
+                    // =================================
+
+                    if (
+                        scheduleDateTime.getTime() <=
+                        Date.now()
+                    ) {
+
+                        continue;
+
+                    }
+
+
+                    for (
+                        const destinationId
+                        of selectedDestinations
+                    ) {
+
+                        schedulesToCreate.push({
+
+                            bot_id:
+                                Number(botId),
+
+                            destination_id:
+                                Number(
+                                    destinationId
+                                ),
+
+                            post_id:
+                                Number(postId),
+
+                            schedule_time:
+                                `${dateString} ${time}:00`,
+
+                            status:
+                                "scheduled"
+
+                        });
+
+                    }
+
+                }
+
+            }
+
+
+            current.setDate(
+                current.getDate() + 1
+            );
+
+        }
+
+
+        // =====================================
+        // TIDAK ADA JADWAL VALID
+        // =====================================
+
+        if (
+            schedulesToCreate.length === 0
+        ) {
+
+            alert(
+                "⚠️ Tidak ada jadwal yang valid.\n\n" +
+                "Pastikan tanggal, hari, dan jam posting " +
+                "masih berada di masa depan."
+            );
+
+            return;
+
+        }
+
+
+        // =====================================
+        // CONFIRM
+        // =====================================
+
+        const confirmed =
+            confirm(
+
+                "🚀 BUAT SEMUA JADWAL?\n\n" +
+
+                `📅 Mulai     : ${startDate}\n` +
+                `📅 Selesai   : ${endDate}\n` +
+                `📆 Hari      : ${selectedWeekdays.length}\n` +
+                `⏰ Jam       : ${selectedTimes.length}\n` +
+                `📡 Destination: ${selectedDestinations.length}\n\n` +
+
+                `📊 Total schedule: ${schedulesToCreate.length}\n\n` +
+
+                "Lanjutkan membuat semua schedule?"
+
+            );
+
+
+        if (!confirmed) {
+
+            return;
+
+        }
 
 
         // =====================================
@@ -1252,7 +1935,7 @@ scheduleForm.addEventListener(
                 true;
 
             submitButton.textContent =
-                "Menyimpan...";
+                "Membuat Jadwal...";
 
         }
 
@@ -1260,91 +1943,141 @@ scheduleForm.addEventListener(
         try {
 
             let successCount = 0;
+
             let failedCount = 0;
 
-            const failedDestinations = [];
+            const failedSchedules = [];
 
 
             // =====================================
-            // BUAT SCHEDULE UNTUK SETIAP DESTINATION
+            // CREATE SCHEDULE
+            // BATCH KECIL AGAR BROWSER AMAN
             // =====================================
+
+            const batchSize = 10;
+
 
             for (
-                const destinationId
-                of selectedDestinations
+                let i = 0;
+                i < schedulesToCreate.length;
+                i += batchSize
             ) {
 
-                try {
+                const batch =
+                    schedulesToCreate.slice(
+                        i,
+                        i + batchSize
+                    );
 
-                    const response =
-                        await fetch(
-                            "/api/schedules",
-                            {
-                                method: "POST",
 
-                                headers: {
-                                    "Content-Type":
-                                        "application/json"
-                                },
+                const results =
+                    await Promise.all(
 
-                                body:
-                                    JSON.stringify({
+                        batch.map(
+                            async schedule => {
 
-                                        bot_id:
-                                            Number(
-                                                botId
-                                            ),
+                                try {
 
-                                        destination_id:
-                                            Number(
-                                                destinationId
-                                            ),
+                                    const response =
+                                        await fetch(
+                                            "/api/schedules",
+                                            {
+                                                method:
+                                                    "POST",
 
-                                        post_id:
-                                            Number(
-                                                postId
-                                            ),
+                                                headers: {
+                                                    "Content-Type":
+                                                        "application/json"
+                                                },
 
-                                        schedule_time:
-                                            scheduleTimeValue,
+                                                body:
+                                                    JSON.stringify(
+                                                        schedule
+                                                    )
 
-                                        status:
-                                            "scheduled"
+                                            }
+                                        );
 
-                                    })
+
+                                    const result =
+                                        await response.json();
+
+
+                                    if (
+                                        !response.ok ||
+                                        !result.success
+                                    ) {
+
+                                        throw new Error(
+                                            result.message ||
+                                            "Gagal membuat schedule."
+                                        );
+
+                                    }
+
+
+                                    return {
+                                        success: true
+                                    };
+
+
+                                } catch (error) {
+
+                                    return {
+
+                                        success:
+                                            false,
+
+                                        error:
+                                            error.message,
+
+                                        schedule:
+                                            schedule
+
+                                    };
+
+                                }
 
                             }
-                        );
+                        )
+
+                    );
 
 
-                    const result =
-                        await response.json();
+                results.forEach(
+                    result => {
 
+                        if (
+                            result.success
+                        ) {
 
-                    if (
-                        !response.ok ||
-                        !result.success
-                    ) {
+                            successCount++;
 
-                        throw new Error(
-                            result.message ||
-                            "Gagal membuat schedule."
-                        );
+                        } else {
+
+                            failedCount++;
+
+                            failedSchedules.push(
+
+                                `${result.schedule.schedule_time} → ` +
+                                `${result.error}`
+
+                            );
+
+                        }
 
                     }
+                );
 
 
-                    successCount++;
+                // Progress button
+                if (submitButton) {
 
-
-                } catch (error) {
-
-                    failedCount++;
-
-
-                    failedDestinations.push(
-                        `${destinationId}: ${error.message}`
-                    );
+                    submitButton.textContent =
+                        `Menyimpan ${Math.min(
+                            i + batchSize,
+                            schedulesToCreate.length
+                        )}/${schedulesToCreate.length}...`;
 
                 }
 
@@ -1361,9 +2094,17 @@ scheduleForm.addEventListener(
             ) {
 
                 alert(
+
                     `✅ Berhasil membuat ${successCount} schedule.\n\n` +
-                    `Post akan dikirim ke ${successCount} destination ` +
-                    `pada ${scheduleTimeValue}.`
+
+                    `📅 Periode : ${startDate} → ${endDate}\n` +
+                    `📆 Hari    : ${selectedWeekdays.length}\n` +
+                    `⏰ Jam     : ${selectedTimes.length}\n` +
+                    `📡 Destination : ${selectedDestinations.length}\n\n` +
+
+                    "Scheduler Railway akan menjalankan " +
+                    "jadwal secara otomatis."
+
                 );
 
             } else if (
@@ -1372,23 +2113,34 @@ scheduleForm.addEventListener(
             ) {
 
                 alert(
+
                     `⚠️ Sebagian schedule berhasil dibuat.\n\n` +
+
                     `Berhasil : ${successCount}\n` +
                     `Gagal    : ${failedCount}\n\n` +
-                    failedDestinations.join("\n")
+
+                    failedSchedules
+                        .slice(0, 20)
+                        .join("\n")
+
                 );
 
             } else {
 
                 throw new Error(
-                    failedDestinations.join("\n")
+                    failedSchedules
+                        .slice(0, 20)
+                        .join("\n")
                 );
 
             }
 
 
-            resetForm();
+            // =====================================
+            // RESET + REFRESH
+            // =====================================
 
+            resetForm();
 
             await loadSchedules();
 
@@ -1396,13 +2148,16 @@ scheduleForm.addEventListener(
         } catch (error) {
 
             console.error(
-                "CREATE SCHEDULE ERROR:",
+                "CREATE BULK SCHEDULE ERROR:",
                 error
             );
 
+
             alert(
+
                 "❌ Gagal membuat schedule.\n\n" +
                 error.message
+
             );
 
 
@@ -1421,8 +2176,7 @@ scheduleForm.addEventListener(
         }
 
     }
-);
-
+  );
 
 // =========================================
 // REFRESH

@@ -217,9 +217,7 @@
 
             <form id="scheduleForm">
 
-
                 <!-- BOT -->
-
                 <div class="form-group">
 
                     <label for="scheduleBot">
@@ -230,19 +228,15 @@
                         id="scheduleBot"
                         required
                     >
-
                         <option value="">
                             Memuat Bot...
                         </option>
-
                     </select>
 
                 </div>
 
 
-
                 <!-- DESTINATIONS -->
-
                 <div class="form-group">
 
                     <label>
@@ -281,9 +275,252 @@
                         id="destinationList"
                         class="destination-list"
                     >
-
                         <div class="destination-empty">
                             Pilih Bot terlebih dahulu.
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- POST -->
+                <div class="form-group">
+
+                    <label for="schedulePost">
+                        📄 Post
+                    </label>
+
+                    <select
+                        id="schedulePost"
+                        required
+                    >
+                        <option value="">
+                            Memuat Post...
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <!-- PERIODE -->
+                <div class="schedule-grid">
+
+                    <div class="form-group">
+
+                        <label for="scheduleStartDate">
+                            📅 Tanggal Mulai
+                        </label>
+
+                        <input
+                            type="date"
+                            id="scheduleStartDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="scheduleEndDate">
+                            📅 Tanggal Selesai
+                        </label>
+
+                        <input
+                            type="date"
+                            id="scheduleEndDate"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- HARI -->
+                <div class="form-group">
+
+                    <label>
+                        📆 Hari Posting
+                    </label>
+
+
+                    <div class="weekday-selector">
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="1"
+                                checked
+                            >
+                            <span>Senin</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="2"
+                                checked
+                            >
+                            <span>Selasa</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="3"
+                                checked
+                            >
+                            <span>Rabu</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="4"
+                                checked
+                            >
+                            <span>Kamis</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="5"
+                                checked
+                            >
+                            <span>Jumat</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="6"
+                                checked
+                            >
+                            <span>Sabtu</span>
+                        </label>
+
+
+                        <label class="weekday-item">
+                            <input
+                                type="checkbox"
+                                name="scheduleWeekday"
+                                value="0"
+                                checked
+                            >
+                            <span>Minggu</span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- JAM POSTING -->
+                <div class="form-group">
+
+                    <label>
+                        ⏰ Jam Posting
+                    </label>
+
+
+                    <div
+                        id="scheduleTimes"
+                        class="schedule-times"
+                    >
+
+                        <div class="schedule-time-row">
+
+                            <input
+                                type="time"
+                                class="schedule-time-input"
+                                value="08:00"
+                            >
+
+                            <button
+                                type="button"
+                                class="btn-secondary btn-small remove-time-btn"
+                            >
+                                ✕
+                            </button>
+
+                        </div>
+
+
+                        <div class="schedule-time-row">
+
+                            <input
+                                type="time"
+                                class="schedule-time-input"
+                                value="12:00"
+                            >
+
+                            <button
+                                type="button"
+                                class="btn-secondary btn-small remove-time-btn"
+                            >
+                                ✕
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="addScheduleTimeBtn"
+                        class="btn-secondary btn-small"
+                    >
+                        ➕ Tambah Jam
+                    </button>
+
+                </div>
+
+
+                <!-- PREVIEW -->
+                <div class="schedule-preview">
+
+                    <div class="schedule-preview-title">
+                        📊 Preview Jadwal
+                    </div>
+
+
+                    <div class="schedule-preview-grid">
+
+                        <div>
+                            <span>Hari aktif</span>
+                            <strong id="previewDays">0</strong>
+                        </div>
+
+
+                        <div>
+                            <span>Jam / hari</span>
+                            <strong id="previewTimes">0</strong>
+                        </div>
+
+
+                        <div>
+                            <span>Destination</span>
+                            <strong id="previewDestinations">0</strong>
+                        </div>
+
+
+                        <div>
+                            <span>Total Schedule</span>
+                            <strong id="previewTotal">0</strong>
                         </div>
 
                     </div>
@@ -291,72 +528,7 @@
                 </div>
 
 
-
-                <!-- POST -->
-
-                <div class="form-group">
-
-                    <label for="schedulePost">
-                        📝 Post
-                    </label>
-
-                    <select
-                        id="schedulePost"
-                        required
-                    >
-
-                        <option value="">
-                            Memuat Post...
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- DATE + TIME -->
-
-                <div class="schedule-grid">
-
-
-                    <div class="form-group">
-
-                        <label for="scheduleDate">
-                            📅 Tanggal
-                        </label>
-
-                        <input
-                            type="date"
-                            id="scheduleDate"
-                            required
-                        >
-
-                    </div>
-
-
-
-                    <div class="form-group">
-
-                        <label for="scheduleTime">
-                            ⏰ Jam
-                        </label>
-
-                        <input
-                            type="time"
-                            id="scheduleTime"
-                            required
-                        >
-
-                    </div>
-
-
-                </div>
-
-
-
                 <!-- STATUS -->
-
                 <div class="form-group">
 
                     <label for="scheduleStatus">
@@ -380,16 +552,14 @@
                 </div>
 
 
-
                 <!-- ACTION -->
-
                 <div class="schedule-actions">
 
                     <button
                         type="submit"
                         class="btn-primary"
                     >
-                        💾 Jadwalkan Post
+                        🚀 Buat Semua Jadwal
                     </button>
 
 
@@ -402,7 +572,6 @@
                     </button>
 
                 </div>
-
 
             </form>
 
