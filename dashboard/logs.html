@@ -153,6 +153,110 @@
 
             </div>
 
+            <!-- =====================================================
+                 LOG FILTER
+            ===================================================== -->
+
+            <div class="logs-filter">
+
+                <div class="log-filter-group">
+
+                    <label for="logStatusFilter">
+                        Status
+                    </label>
+
+                    <select id="logStatusFilter">
+                        <option value="">
+                            Semua Status
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="log-filter-group">
+
+                    <label for="logBotFilter">
+                        Bot
+                    </label>
+
+                    <select id="logBotFilter">
+                        <option value="">
+                            Semua Bot
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="log-filter-group">
+
+                    <label for="logDestinationFilter">
+                        Destination
+                    </label>
+
+                    <select id="logDestinationFilter">
+                        <option value="">
+                            Semua Destination
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="log-filter-group">
+
+                    <label for="logPostFilter">
+                        Post
+                    </label>
+
+                    <select id="logPostFilter">
+                        <option value="">
+                            Semua Post
+                        </option>
+                    </select>
+
+                </div>
+
+
+                <div class="log-filter-group log-search-group">
+
+                    <label for="logSearch">
+                        Cari
+                    </label>
+
+                    <input
+                        type="search"
+                        id="logSearch"
+                        placeholder="Cari post, bot, destination..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div class="log-filter-actions">
+
+                    <button
+                        type="button"
+                        id="resetLogFiltersBtn"
+                        class="btn-secondary btn-small"
+                    >
+                        ↺ Reset
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="logs-filter-result">
+
+                Menampilkan
+                <strong id="logResultCount">0 log</strong>
+
+            </div>
+
 
             <div
                 id="logsList"

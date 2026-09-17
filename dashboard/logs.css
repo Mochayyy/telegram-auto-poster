@@ -1,3 +1,7 @@
+/* =========================================================
+   LOGS PAGE
+========================================================= */
+
 .logs-card {
     background: rgba(15, 15, 15, 0.82);
     border: 1px solid rgba(255, 30, 60, 0.18);
@@ -5,6 +9,11 @@
     padding: 24px;
     box-shadow: 0 0 35px rgba(255, 0, 60, 0.08);
 }
+
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .logs-header {
     display: flex;
@@ -23,6 +32,11 @@
     color: #888;
 }
 
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
 .btn-refresh {
     border: 1px solid rgba(255, 30, 60, 0.35);
     background: rgba(255, 30, 60, 0.08);
@@ -30,11 +44,147 @@
     padding: 10px 16px;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
 .btn-refresh:hover {
     background: rgba(255, 30, 60, 0.18);
+    border-color: rgba(255, 30, 60, 0.55);
 }
+
+
+/* =========================================================
+   FILTER
+========================================================= */
+
+.logs-filter {
+    display: grid;
+    grid-template-columns:
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        minmax(180px, 1fr)
+        minmax(180px, 1fr)
+        minmax(220px, 1.4fr)
+        auto;
+
+    gap: 12px;
+
+    padding: 16px;
+
+    margin-bottom: 10px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    border-radius: 14px;
+}
+
+
+/* =========================================================
+   FILTER GROUP
+========================================================= */
+
+.log-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.log-filter-group label {
+    color: #999;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   SELECT + SEARCH
+========================================================= */
+
+.log-filter-group select,
+.log-filter-group input {
+    width: 100%;
+    min-height: 40px;
+
+    box-sizing: border-box;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    background: rgba(0, 0, 0, 0.45);
+
+    color: #fff;
+
+    border-radius: 9px;
+
+    padding: 9px 11px;
+
+    outline: none;
+
+    font-size: 13px;
+}
+
+.log-filter-group select:focus,
+.log-filter-group input:focus {
+    border-color: rgba(255, 30, 60, 0.55);
+
+    box-shadow:
+        0 0 0 3px rgba(255, 30, 60, 0.08);
+}
+
+
+/* =========================================================
+   SELECT OPTION
+========================================================= */
+
+.log-filter-group select option {
+    background: #111;
+    color: #fff;
+}
+
+
+/* =========================================================
+   RESET BUTTON
+========================================================= */
+
+.log-filter-actions {
+    display: flex;
+    align-items: flex-end;
+}
+
+.log-filter-actions button {
+    min-height: 40px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FILTER RESULT
+========================================================= */
+
+.logs-filter-result {
+    display: flex;
+    align-items: center;
+
+    min-height: 34px;
+
+    margin-bottom: 12px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.logs-filter-result strong {
+    margin-left: 4px;
+    color: #ccc;
+}
+
+
+/* =========================================================
+   LOG LIST
+========================================================= */
 
 .logs-list {
     display: flex;
@@ -42,10 +192,16 @@
     gap: 12px;
 }
 
+
+/* =========================================================
+   LOG ITEM
+========================================================= */
+
 .log-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     gap: 20px;
 
     padding: 16px;
@@ -55,68 +211,197 @@
     border: 1px solid rgba(255, 255, 255, 0.06);
 
     border-radius: 14px;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
 }
+
+.log-item:hover {
+    background: rgba(255, 255, 255, 0.035);
+
+    border-color:
+        rgba(255, 30, 60, 0.18);
+}
+
+
+/* =========================================================
+   LOG INFO
+========================================================= */
 
 .log-info {
     min-width: 0;
+    flex: 1;
 }
 
 .log-title {
     font-weight: 700;
     margin-bottom: 7px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .log-meta {
     display: flex;
     flex-wrap: wrap;
+
     gap: 12px;
+
     color: #888;
+
     font-size: 13px;
 }
 
 .log-message {
     margin-top: 8px;
+
     color: #aaa;
+
     font-size: 13px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
 }
+
+
+/* =========================================================
+   STATUS
+========================================================= */
 
 .log-status {
     flex-shrink: 0;
+
     padding: 6px 11px;
+
     border-radius: 999px;
+
     font-size: 12px;
+
     font-weight: 700;
+
     text-transform: uppercase;
 }
 
 .log-success {
     color: #7dffb2;
+
     background: rgba(0, 255, 120, 0.08);
+
     border: 1px solid rgba(0, 255, 120, 0.18);
 }
 
 .log-failed {
     color: #ff647b;
+
     background: rgba(255, 30, 60, 0.08);
+
     border: 1px solid rgba(255, 30, 60, 0.2);
 }
 
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
 .empty-logs {
     text-align: center;
+
     padding: 50px 20px;
+
     color: #777;
 }
 
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .logs-filter {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+    .log-search-group {
+        grid-column: span 2;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 700px) {
+
+    .logs-card {
+        padding: 16px;
+        border-radius: 14px;
+    }
+
 
     .logs-header {
         align-items: flex-start;
         flex-direction: column;
     }
 
+
+    .btn-refresh {
+        width: 100%;
+    }
+
+
+    .logs-filter {
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+
+        padding: 12px;
+    }
+
+
+    .log-search-group {
+        grid-column: auto;
+    }
+
+
+    .log-filter-actions {
+        width: 100%;
+    }
+
+
+    .log-filter-actions button {
+        width: 100%;
+    }
+
+
     .log-item {
         align-items: flex-start;
+
         flex-direction: column;
+
+        gap: 12px;
+    }
+
+
+    .log-status {
+        align-self: flex-start;
+    }
+
+
+    .log-title {
+        white-space: normal;
+    }
+
+
+    .log-meta {
+        flex-direction: column;
+        gap: 5px;
     }
 
 }
