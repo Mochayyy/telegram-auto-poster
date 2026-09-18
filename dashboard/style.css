@@ -26,15 +26,20 @@ body {
     background:
         radial-gradient(
             circle at top left,
-            rgba(255, 0, 55, 0.13),
-            transparent 35%
+            rgba(255, 0, 55, 0.45),
+            transparent 40%
         ),
         radial-gradient(
-            circle at bottom right,
-            rgba(170, 0, 30, 0.10),
-            transparent 35%
+            circle at center right,
+            rgba(220, 0, 45, 0.35),
+            transparent 45%
         ),
-        var(--bg);
+        linear-gradient(
+            135deg,
+            #5c0010 0%,
+            #8f001c 45%,
+            #3d000b 100%
+        );
 
     color: var(--text);
 
