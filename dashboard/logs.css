@@ -405,3 +405,175 @@
     }
 
 }
+
+/* =====================================================
+   BOT STATISTICS
+===================================================== */
+
+.bot-statistics {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(12, 12, 15, 0.96);
+    border: 1px solid rgba(255, 30, 60, 0.18);
+    border-radius: 16px;
+}
+
+
+.bot-statistics-header {
+    margin-bottom: 16px;
+}
+
+
+.bot-statistics-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+
+.bot-statistics-header p {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: #999999;
+}
+
+
+.bot-statistics-grid {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(240px, 1fr)
+    );
+    gap: 14px;
+}
+
+
+.bot-stat-card {
+    padding: 16px;
+    background: rgba(20, 20, 24, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.bot-stat-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 30, 60, 0.35);
+}
+
+
+.bot-stat-name {
+    margin-bottom: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    word-break: break-word;
+}
+
+
+.bot-stat-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+
+.bot-stat-item {
+    padding: 10px 6px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+.bot-stat-number {
+    display: block;
+    font-size: 20px;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+
+.bot-stat-label {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #999999;
+}
+
+
+.bot-stat-item.success
+.bot-stat-number {
+    color: #35d07f;
+}
+
+
+.bot-stat-item.failed
+.bot-stat-number {
+    color: #ff4d6d;
+}
+
+
+.bot-stat-item.total
+.bot-stat-number {
+    color: #ffffff;
+}
+
+
+.bot-statistics-empty {
+    padding: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: #888888;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .bot-statistics {
+        margin: 14px 0;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+
+    .bot-statistics-header h3 {
+        font-size: 16px;
+    }
+
+
+    .bot-statistics-header p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+
+    .bot-statistics-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+
+    .bot-stat-card {
+        padding: 14px;
+    }
+
+
+    .bot-stat-values {
+        gap: 6px;
+    }
+
+
+    .bot-stat-number {
+        font-size: 18px;
+    }
+
+}
